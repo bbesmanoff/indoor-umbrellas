@@ -12,15 +12,18 @@
   },
   "scripts": {
     "start": "DEBUG=true node server.js",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "test": "mocha --compilers js:babel/register --recursive"
   },
   "devDependencies": {
     "babel-core": "^5.8.24",
     "babel-loader": "^5.3.2",
     "css-loader": "^0.18.0",
     "cssnext-loader": "^1.0.1",
+    "expect": "^1.10.0",
     "extract-text-webpack-plugin": "^0.8.2",
     "jsx-loader": "^0.13.2",
+    "mocha": "^2.3.2",
     "react-hot-loader": "^1.3.0",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",
