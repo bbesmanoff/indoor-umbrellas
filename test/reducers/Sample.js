@@ -6,4 +6,13 @@ describe('the sample reducer', () => {
   it('should return the default state', () => {
     expect(reducer(undefined, {})).toEqual({title: 'Home'});
   });
+
+  it('should add the next state', () => {
+    const action = {
+      type: types.TITLE_CHANGED,
+      text: 'Hello World'
+    };
+
+    expect(reducer({title: 'Home'}, action)).toEqual({title: 'Hello World'});
+  });
 });
