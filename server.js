@@ -2,8 +2,9 @@ import api from './api';
 import express from 'express';
 import browserify from 'browserify-middleware';
 
-const app = express();
+browserify.settings('transform', ['babelify']);
 
+const app = express();
 app.use(express.static('client'));
 app.get('/js/bundle.js', browserify(__dirname + '/client/js/test.js'));
 
