@@ -5,7 +5,7 @@
   </head>
   <body>
     <div id='root'></div>
-<!--    <script src='/js/bundle.js'></script>-->
+    <script src='/js/bundle.js'></script>
       
     <script>
       // This is called with the results from from FB.getLoginStatus().
@@ -89,19 +89,11 @@
       }
     </script>
 
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
-    TEST!!!
+      
+    <!--facebook login button-->
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
-
-    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
-
-
+    <!--facebook like and share buttons -->
     <div
       class="fb-like"
       data-share="true"
@@ -109,10 +101,9 @@
       data-show-faces="true">
     </div>  
 
-    TEST2
-      
+    <!--place to indicate user login status for now -->
     <div id="status">
     </div>
 
-</body>
+  </body>
 </html>
