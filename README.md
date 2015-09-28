@@ -13,15 +13,13 @@ will pull down all the project dependencies.  Afterwards, run `npm start` to
 launch the server.
 
 ## Project Setup
-The project is currently split into two separate 'mini-apps'.  The first of
-which is under [api](api/).  This is where all server-side code lives.  It makes
-use of an [Express
-Router](http://expressjs.com/guide/routing.html#express-router) to route all
-paths under the `/api` URL namespace.
+[Gulp][gulp] is used to build and serve the project.  Behind the scenes, `npm
+starts` calls `gulp`.  The default task is configured to build the project,
+serve the project, and then watch for changes to project files.  When you modify
+any of the project files, it will rebuild all files.
 
-The client code is under [client](client/) and mounted as the `/` namespace.  It
-uses some magic in [server.js](server.js) to
-[babelify](https://github.com/babel/babelify) and
-[browserify](http://browserify.org/) the files served.  Ideally, this will be
-cleaned up so that all client-related code/configuration lives under client.
-For now, this will do.
+The development server, spawned through `gulp`, will host the built files
+through the use of `express.static()`.  This is turned off when the app is in
+production, as the front-facing web server will serve the static files.
+
+[gulp]: http://gulpjs.com/
