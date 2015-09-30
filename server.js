@@ -75,44 +75,40 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
+server.get('/auth/facebook', passport.authenticate('facebook'), function(req, res) {
+    // The request will be redirected to Facebook for authentication, so this
+    // function will not be called.
+});
+
+// GET /auth/facebook/callback
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+server.get('/auth/facebook/callback', 
+         passport.authenticate('facebook', { failureRedirect: '/login' }), 
+         function(req, res) { 
+  console.log('authentication passed, redirecting to home page');
+  res.redirect('/home');
+});    
+
+server.get('/login', ensureAuthenticated, function (req, res) {
+    res.redirect('/home');
+});
+    
+
+server.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/login');
+});
+
 
 if (server.get('env') !== 'production') {
   server.use('/', express.static('dist'));
     
-  server.get('/login', ensureAuthenticated, function (req, res) {
-    res.redirect('/home');
-  });
-    
   server.get('/home', function (req, res) {
     res.sendFile('home.html',  {root: path.join(__dirname, 'dist')})
-  });
-    
-/*  server.get('/account', ensureAuthenticated, function (req, res) {
-    res.send({ user: req.user });
-  });*/
-    
-  server.get('/auth/facebook', passport.authenticate('facebook'), function(req, res) {
-    // The request will be redirected to Facebook for authentication, so this
-    // function will not be called.
-  });
-    
-  // GET /auth/facebook/callback
-  //   Use passport.authenticate() as route middleware to authenticate the
-  //   request.  If authentication fails, the user will be redirected back to the
-  //   login page.  Otherwise, the primary route function function will be called,
-  //   which, in this example, will redirect the user to the home page.
-  server.get('/auth/facebook/callback', 
-             passport.authenticate('facebook', { failureRedirect: '/login' }), 
-             function(req, res) { 
-      console.log('authentication passed, redirecting to home page');
-      res.redirect('/home');
   });    
-    
-  server.get('/logout', function(req, res){
-        req.logout();
-        res.redirect('/login');
-  });
-    
 }
 
 
