@@ -1,3 +1,19 @@
-html {
-  background: green;
+.description{
+	position:absolute; /* absolute position (so we can position it where we want)*/
+	bottom:50%; /* position will be in center */
+	left:0em;
+	width:100%;
+	/* styling bellow */
+	background-color:black;
+	font-family: 'tahoma';
+	font-size:15px;
+	color:white;
+	opacity:0.6; /* transparency */
+	filter:alpha(opacity=60); /* IE transparency */
 }
+.description_content{
+	padding:10px;
+	margin-left: 50%;
+}
+
+

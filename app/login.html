@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Indoor Umbrellas</title>
   </head>
-  <body>
-    <div id='root'></div>
-    <script type='text/javascript' src='/js/index.js'></script>  
-    
-    Log-in page
-      
-    <!--facebook login button-->
-    <!--<fb:login-button scope="public_profile,email" onlogin="window.location.href='../auth/facebook';" data-size="xlarge"></fb:login-button>-->
-      
-    <a href="/auth/facebook"><img src="/images/login-with-facebook.png" width="200" height="30"></a>
+  <body background="/images/login-background.png">
+    <div id='root' background="/images/login-background.png"></div>
+    <div class="description" background="/images/login-background.png">
+        <div class="description-content">
+            <h1>Welcome!</h1>
+            <h3>Please log in with Facebook here</h3>
+            <a href="/auth/facebook"><img src="/images/login-with-facebook.png" width="200" height="30"></a>
+
+        </div>
+    </div>  
 
   </body>
 </html>

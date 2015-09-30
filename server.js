@@ -110,7 +110,7 @@ if (server.get('env') !== 'production') {
     
   server.get('/logout', function(req, res){
         req.logout();
-        res.redirect('/');
+        res.redirect('/login');
   });
     
 }
