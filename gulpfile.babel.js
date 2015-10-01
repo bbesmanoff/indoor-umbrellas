@@ -20,7 +20,8 @@ gulp.task('build:html', () => {
 
 gulp.task('build:js', () => {
   const b = browserify({
-    debug: process.env.NODE_ENV !== 'production'
+    debug: process.env.NODE_ENV !== 'production',
+    insertGlobals: true
   });
 
   return b.transform(babelify)
