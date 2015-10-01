@@ -5,6 +5,7 @@ import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
+import api from './api';
 
 const server = express();
 const FacebookStrategy = passport_facebook.Strategy;
@@ -51,7 +52,7 @@ passport.use(new FacebookStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's Facebook profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Facebook account with a user record in your database,
@@ -66,9 +67,9 @@ passport.use(new FacebookStrategy({
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { 
+    if (req.isAuthenticated()) {
         console.log('user was authenticated');
-        return next(); 
+        return next();
     } else{
         console.log('user was not authenticated');
         res.sendFile('login.html',  {root: path.join(__dirname, 'dist')});
@@ -85,17 +86,17 @@ server.get('/auth/facebook', passport.authenticate('facebook'), function(req, re
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-server.get('/auth/facebook/callback', 
-         passport.authenticate('facebook', { failureRedirect: '/login' }), 
-         function(req, res) { 
+server.get('/auth/facebook/callback',
+         passport.authenticate('facebook', { failureRedirect: '/login' }),
+         function(req, res) {
   console.log('authentication passed, redirecting to home page');
   res.redirect('/home');
-});    
+});
 
 server.get('/login', ensureAuthenticated, function (req, res) {
     res.redirect('/home');
 });
-    
+
 
 server.get('/logout', function(req, res){
     req.logout();
@@ -105,12 +106,13 @@ server.get('/logout', function(req, res){
 
 if (server.get('env') !== 'production') {
   server.use('/', express.static('dist'));
-    
+
   server.get('/home', function (req, res) {
     res.sendFile('home.html',  {root: path.join(__dirname, 'dist')})
-  });    
+  });
 }
 
 
+server.use('/api', api);
 
 export default server;
