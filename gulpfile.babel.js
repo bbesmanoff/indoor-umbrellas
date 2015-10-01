@@ -6,7 +6,7 @@ import babelify from 'babelify';
 import source from 'vinyl-source-stream';
 
 gulp.task('default', ['build', 'server', 'watch']);
-gulp.task('build', ['build:css', 'build:html', 'build:js']);
+gulp.task('build', ['build:css', 'build:html', 'build:images', 'build:js']);
 
 gulp.task('build:css', () => {
    return gulp.src(['./app/**/*.css'])
@@ -16,6 +16,11 @@ gulp.task('build:css', () => {
 gulp.task('build:html', () => {
   return gulp.src(['./app/**/*.html'])
     .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build:images', () => {
+   return gulp.src(['./app/**/*.png'])
+     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('build:js', () => {
