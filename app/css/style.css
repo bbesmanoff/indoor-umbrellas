@@ -1,4 +1,4 @@
-.description{
+.description {
 	position:absolute; /* absolute position (so we can position it where we want)*/
 	bottom:50%; /* position will be in center */
 	left:0em;
@@ -11,9 +11,12 @@
 	opacity:0.6; /* transparency */
 	filter:alpha(opacity=60); /* IE transparency */
 }
-.description_content{
+
+.description_content {
 	padding:10px;
 	text-align: center;
 }
 
-
+.panel-primary {
+	margin-bottom: 5px;
+}
