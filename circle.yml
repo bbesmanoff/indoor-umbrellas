@@ -6,4 +6,4 @@ deployment:
   production:
     branch: master
     commands:
-      - git push git@vm344b.se.rit.edu/usr/local/indoor-umbrellas master
+      - git push git@vm344b.se.rit.edu:/usr/local/indoor-umbrellas master
