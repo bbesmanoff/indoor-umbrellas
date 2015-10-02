@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'react-router';
 
-import Navbar from './components/Navbar';
-import Event from './components/Event';
+import Navbar from './components/navbar';
+import Event from './components/event';
 
 const {Route, RouteHandler} = Router;
 
