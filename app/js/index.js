@@ -2,12 +2,16 @@ import React from 'react';
 import Router from 'react-router';
 
 import Navbar from './components/navbar';
-import Event from './components/event';
+import EventList from './components/event-list';
 
 const {Route, RouteHandler} = Router;
 
 class App extends React.Component {
+
   render() {
+    var today = new Date();
+    var tomorrow = (new Date()).setDate(today.getDate() + 1);
+
     return (
       <div>
         <Navbar page="Home"/>
@@ -21,14 +25,10 @@ class App extends React.Component {
 
             </div>
             <div className="col-xs-4">
-              <h1>Calendar</h1>
-              <Event title="R1 Release" day="Monday" startTime="12:00pm"
-                  description="We have to release our awesome web-app!"
-              />
-              <Event title="Ice Cream Event" day="Tuesday" startTime="12:00pm" endTime="1:00pm" />
-              <Event title="Watch Movies" day="Wednesday" startTime="3:00am" endTime="9:00pm"
-                description="Watching Movies All Day Long!"
-              />
+              <h1>{"Today's Events"}</h1>
+              <EventList date={today}/>
+              <h1>{"Upcoming Events"}</h1>
+              <EventList date={tomorrow} />
             </div>
           </div>
         </div>
