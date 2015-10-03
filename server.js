@@ -4,6 +4,7 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import expressGraphql from 'express-graphql';
 
 import api from './api';
 
@@ -16,8 +17,6 @@ server.use(session({ secret: 'keyboard cat' }));
 // persistent login sessions (recommended).
 server.use(passport.initialize());
 server.use(passport.session());
-
-
 
 //TODO may want these secure somewhere?
 var FACEBOOK_APP_ID = "819934004772176";
