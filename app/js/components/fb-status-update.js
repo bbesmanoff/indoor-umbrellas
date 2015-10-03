@@ -39,7 +39,9 @@ export default class StatusUpdate extends Component {
         <div className="panel-body">
           <p className="text-primary">{this.props.prompt}</p>
           <StatusInput />
-          <PostButton />
+          <div className="post-div">
+            <PostButton />
+          </div>
         </div>
       </div>
     );
