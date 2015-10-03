@@ -4,7 +4,6 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
 
 import api from './api';
 
@@ -12,7 +11,6 @@ const server = express();
 const FacebookStrategy = passport_facebook.Strategy;
 
 server.use(cookieParser());
-server.use(bodyParser());
 server.use(session({ secret: 'keyboard cat' }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
