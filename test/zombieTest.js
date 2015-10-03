@@ -1,6 +1,6 @@
 const Browser = require('zombie');
 
-Browser.localhost('indoor-umbrellas',3000);
+Browser.localhost('indoor-umbrellas',3001);
 
 import server from '../server';
 
