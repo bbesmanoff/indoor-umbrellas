@@ -8,7 +8,7 @@ describe('User visits landing page', function(){
 
 	before(function(done){
 		server.listen(3001, () => {
-			browser.visit('http://localhost:3001/', done);
+			browser.visit('http://localhost:3001/#/', done);
 		});
 	});
 
