@@ -1,12 +1,10 @@
 import React from 'react';
-import Router from 'react-router';
+import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
 import Event from './components/event';
 import StatusUpdate from './components/fb-status-update';
 import Feed from './components/fb-feed';
-
-const {Route, RouteHandler} = Router;
 
 class App extends React.Component {
   render() {
@@ -36,17 +34,12 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <RouteHandler/>
+
       </div>
     );
   }
 }
 
-const routes = (
-  <Route name='app' path='/' handler={App}>
-  </Route>
-);
-
-Router.run(routes, (Handler) => {
-  React.render(<Handler/>, document.getElementById('main'));
-});
+ReactDOM.render((
+  <App />
+), document.getElementById('main'));
