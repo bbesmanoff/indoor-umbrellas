@@ -6,8 +6,8 @@ describe('User visits landing page', function(){
 	const browser = new Browser();
 
 	before(function(done){
-		const port = process.env.PORT || 3001;
-		server.listen(port,'');
+		const port = 3001;
+		server.listen(port);
 		browser.visit('http://127.0.0.1:3001/#/',done);
 	});
 
