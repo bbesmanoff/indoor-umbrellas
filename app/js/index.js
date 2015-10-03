@@ -3,6 +3,7 @@ import Router from 'react-router';
 
 import Navbar from './components/navbar';
 import Event from './components/event';
+import Ticker from './components/ticker';
 
 const {Route, RouteHandler} = Router;
 
@@ -15,6 +16,11 @@ class App extends React.Component {
           <div className="row">
             <div className="col-xs-4">
               <h1>Stocks</h1>
+              <Ticker symbol="AAPL" askprice="100.00" change="+1.00" />
+              <Ticker symbol="GOOG" askprice="500.00" change="+2.50" />
+              <Ticker symbol="DJI" askprice="23.45" change="-0.47" />
+              <Ticker symbol="XOM" askprice="42.42" change="-0.38" />
+              <Ticker symbol="XRX" askprice="29.97" change="+0.35" />
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
