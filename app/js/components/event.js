@@ -11,7 +11,7 @@ export default class Event extends Component {
         </div>
         <div className="panel-body">
           <p className="text-primary">{dateString}</p>
-          {this.props.children}
+          {this.props.desc}
         </div>
       </div>
     );
