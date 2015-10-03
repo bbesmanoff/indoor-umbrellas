@@ -8,7 +8,7 @@ describe('User visits landing page', function(){
 	before(function(done){
 		const port = process.env.PORT || 3001;
 		server.listen(port,'');
-		browser.visit('http://localhost:3001/',done);
+		browser.visit('http://localhost:3001/#/',done);
 	});
 
 	it('Successfull landing', function() {
