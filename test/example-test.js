@@ -1,7 +1,7 @@
-import expect from 'expect';
+// /import expect from 'expect';
 
-describe('the world', () => {
-  it('is sane', () => {
-    expect(true).toBe(true);
-  });
-});
+//describe('the world', () => {
+//  it('is sane', () => {
+//    expect(true).toBe(true);
+//  });
+//});
