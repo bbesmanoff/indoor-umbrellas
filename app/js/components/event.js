@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Event extends Component {
   render() {
-    var dateString = this.props.day + " " + this.props.startTime + (this.props.endTime ? "-" + this.props.endTime : "")
+    var dateString = `${this.props.date}, ${this.props.startTime} ${(this.props.endTime ? `- ${this.props.endTime}` : "")}`;
 
     return (
       <div className="panel panel-primary">
@@ -11,7 +11,7 @@ export default class Event extends Component {
         </div>
         <div className="panel-body">
           <p className="text-primary">{dateString}</p>
-          {this.props.children}
+          {this.props.description}
         </div>
       </div>
     );
