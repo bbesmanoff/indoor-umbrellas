@@ -1,7 +1,5 @@
 const Browser = require('zombie');
 
-Browser.localhost('indoor-umbrellas',3001);
-
 import server from '../server';
 
 describe('User visits landing page', function(){
@@ -10,7 +8,7 @@ describe('User visits landing page', function(){
 	before(function(done){
 		const port = process.env.PORT || 3001;
 		server.listen(port,'');
-		browser.visit('/',done);
+		browser.visit('http://localhost:3001/',done);
 	});
 
 	it('Successfull landing', function() {
