@@ -1,6 +1,6 @@
 const Browser = require('zombie');
 
-import server from '../server';
+import server from '../server.js';
 
 describe('User visits landing page', function(){
 	const browser = new Browser();
