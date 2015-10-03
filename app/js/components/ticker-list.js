@@ -10,7 +10,7 @@ export default class TickerList extends Component {
 
   componentDidMount () {
     var stockRequest = new XMLHttpRequest();
-    var serviceURL = "https://www.quandl.com/api/v3/datasets/WIKI/" + this.props.symbol + ".json?api_key=" + process.env.quandl;
+    var serviceURL = "https://www.quandl.com/api/v3/datasets/WIKI/" + this.props.symbol + ".json?api_key=j38ozgkznMzRCsKMzzZ4";
     stockRequest.open("GET", serviceURL);
     var stockInfo, stocks;
     stockRequest.onreadystatechange = function() {
