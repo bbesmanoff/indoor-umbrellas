@@ -4,6 +4,7 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 import api from './api';
 
@@ -11,6 +12,7 @@ const server = express();
 const FacebookStrategy = passport_facebook.Strategy;
 
 server.use(cookieParser());
+server.use(bodyParser());
 server.use(session({ secret: 'keyboard cat' }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -32,7 +34,7 @@ var FACEBOOK_APP_SECRET = "90ff6c2c0231f2b185acb5ecdc74dfae";
 //   have a database of user records, the complete Facebook profile is serialized
 //   and deserialized.
 passport.serializeUser(function (user, done) {
-    console.log('serializing user');
+    console.log('serializing user' + user.id);
     done(null, user);
 });
 
@@ -90,11 +92,19 @@ server.get('/auth/facebook/callback',
          passport.authenticate('facebook', { failureRedirect: '/login' }),
          function(req, res) {
   console.log('authentication passed, redirecting to home page');
-  res.redirect('/home');
+  res.redirect('/');
 });
 
 server.get('/login', ensureAuthenticated, function (req, res) {
-    res.redirect('/home');
+    res.redirect('/');
+});
+
+server.get('/', function(req, res){
+	if(!req.isAuthenticated()){
+        res.redirect('/login');
+	} else{
+        res.sendFile('index.html',  {root: path.join(__dirname, 'dist')});
+    }
 });
 
 
@@ -106,10 +116,6 @@ server.get('/logout', function(req, res){
 
 if (server.get('env') !== 'production') {
   server.use('/', express.static('dist'));
-
-  server.get('/home', function (req, res) {
-    res.sendFile('home.html',  {root: path.join(__dirname, 'dist')})
-  });
 }
 
 
