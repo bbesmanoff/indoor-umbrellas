@@ -3,6 +3,8 @@ import Router from 'react-router';
 
 import Navbar from './components/navbar';
 import Event from './components/event';
+import StatusUpdate from './components/fb-status-update';
+import Feed from './components/fb-feed';
 
 const {Route, RouteHandler} = Router;
 
@@ -18,6 +20,8 @@ class App extends React.Component {
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
+              <StatusUpdate title="Status Update" prompt="Enter a Facebook status update below:">
+              </StatusUpdate>
 
             </div>
             <div className="col-xs-4">
