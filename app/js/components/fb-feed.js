@@ -48,6 +48,9 @@ export default class Feed extends Component {
   render() {
     console.log(this.state.feed);
     var feed = this.state.feed
+    .filter((e) => {
+      return (e.message || e.story);
+    })
     .map((e) => {
       return (<Story key={e.id} created={e.created_time} message={e.message} story={e.story} />);
     });

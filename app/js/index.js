@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
-import StatusUpdate from './components/fb-status-update';
 import Feed from './components/fb-feed';
 import EventList from './components/event-list';
 
