@@ -1,4 +1,9 @@
 import {Router} from 'express';
+import Quandl from 'quandl';
+var quandl = new Quandl({
+  auth_token: process.env.quandl,
+  api_version: 3
+});
 
 const api = Router();
 var events = [
@@ -102,11 +107,6 @@ api.get('/events', (req, res) => {
 });
 
 api.get('/stocks/:symbol', (req, res) => {
-  var Quandl = require('quandl');
-  var quandl = new Quandl({
-    auth_token: process.env.quandl,
-    api_version: 3
-  });
   var stockInfo = stocks.filter((e) => {
     var data = quandl.dataset({source:"WIKI", table:e.symbol}, function(error, response){
       if (error) {
