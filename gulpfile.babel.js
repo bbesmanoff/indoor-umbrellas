@@ -24,16 +24,18 @@ gulp.task('build:images', () => {
 });
 
 gulp.task('build:js', () => {
-  const b = browserify({
-    debug: process.env.NODE_ENV !== 'production',
-    insertGlobals: true
-  });
+  ['index.js', 'calendar.js', 'stocks.js'].forEach((file) => {
+    const b = browserify({
+      debug: process.env.NODE_ENV !== 'production',
+      insertGlobals: true
+    });
 
-  return b.transform(babelify)
-    .add('app/js/index.js')
-    .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('dist/js/'));
+    return b.transform(babelify)
+      .add(`app/js/${file}`)
+      .bundle()
+      .pipe(source(file))
+      .pipe(gulp.dest('dist/js/'));
+  });
 });
 
 gulp.task('server', () => {

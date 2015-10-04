@@ -11,7 +11,14 @@ export default class EventList extends Component {
   componentDidMount() {
     var eventRequest = new XMLHttpRequest();
     var eventString, events;
-    eventRequest.open('GET', './api/events');
+    if (this.props.date) {
+      var propDate = new Date(this.props.date);
+      var dateString = `${propDate.getMonth()+1}-${propDate.getDate()}-${propDate.getFullYear()}`;
+      eventRequest.open('GET', `./api/events/${dateString}`);
+    }
+    else {
+      eventRequest.open('GET', './api/events');
+    }
     eventRequest.onload = () => {
         if (eventRequest.status === 200) {
             eventString = eventRequest.responseText;
@@ -29,12 +36,7 @@ export default class EventList extends Component {
   }
 
   render() {
-    console.log(this.props.date)
-    var events = this.state.events
-    .filter((e) => {
-      return (new Date(e.date).toDateString() == new Date(this.props.date).toDateString());
-    })
-    .map((e) => {
+    var events = this.state.events.map((e) => {
       return (<Event key={e.title} title={e.title} date={e.date} description={e.description}
                     startTime={e.startTime} endTime={e.endTime} />);
     });

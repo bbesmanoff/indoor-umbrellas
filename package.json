@@ -24,6 +24,7 @@
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
     "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1",
     "react-redux": "^3.0.1",
     "redux": "^3.0.2",
     "vinyl-source-stream": "^1.1.0"
