@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
+import Feed from './components/fb-feed';
 import EventList from './components/event-list';
 
 class App extends React.Component {
@@ -20,7 +21,7 @@ class App extends React.Component {
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
-
+              <Feed />
             </div>
             <div className="col-xs-4">
               <h1>{"Today's Events"}</h1>

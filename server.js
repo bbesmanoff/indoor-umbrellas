@@ -17,8 +17,6 @@ server.use(session({ secret: 'keyboard cat' }));
 server.use(passport.initialize());
 server.use(passport.session());
 
-
-
 //TODO may want these secure somewhere?
 var FACEBOOK_APP_ID = "819934004772176";
 var FACEBOOK_APP_SECRET = "90ff6c2c0231f2b185acb5ecdc74dfae";
@@ -76,10 +74,8 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
-server.get('/auth/facebook', passport.authenticate('facebook'), function(req, res) {
-    // The request will be redirected to Facebook for authentication, so this
-    // function will not be called.
-});
+server.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: 'user_posts' }), function(req, res){});
 
 // GET /auth/facebook/callback
 //   Use passport.authenticate() as route middleware to authenticate the
