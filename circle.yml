@@ -2,8 +2,8 @@ machine:
   node:
     version: 4.1.0
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - git push git@vm344b.se.rit.edu:/usr/local/indoor-umbrellas master
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - git push git@vm344b.se.rit.edu:/usr/local/indoor-umbrellas master

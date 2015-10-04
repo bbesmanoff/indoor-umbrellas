@@ -12,18 +12,18 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Indoor Umbrellas</a>
+            <a className="navbar-brand" href="/">Indoor Umbrellas</a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul className="nav navbar-nav">
-              <li className={this.props.page=="Home"?"active":""}><a href="#">Home <span className="sr-only">(current)</span></a></li>
+              <li className={this.props.page=="Home"?"active":""}><a href="/index.html">Home <span className="sr-only">(current)</span></a></li>
             </ul>
             <ul className="nav navbar-nav">
-              <li className={this.props.page=="Calendar"?"active":""}><a href="#">Calendar <span className="sr-only">(current)</span></a></li>
+              <li className={this.props.page=="Calendar"?"active":""}><a href="/calendar.html">Calendar <span className="sr-only">(current)</span></a></li>
             </ul>
             <ul className="nav navbar-nav">
-              <li className={this.props.page=="Stocks"?"active":""}><a href="#">Stocks <span className="sr-only">(current)</span></a></li>
+              <li className={this.props.page=="Stocks"?"active":""}><a href="/stocks.html">Stocks <span className="sr-only">(current)</span></a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li><a href="/logout">Logout</a></li>
