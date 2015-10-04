@@ -12,9 +12,11 @@ class App extends React.Component {
     return (
       <div>
         <Navbar page="Calendar"/>
-        <h1>Calendar</h1>
         <div className="container">
-          <Calendar date={today}/>
+          <h1>Calendar</h1>
+          <div className="container">
+            <Calendar date={today}/>
+          </div>
         </div>
       </div>
     );
