@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
+import Event from './components/event';
+import Ticker from './components/ticker';
+
+//const {Route, RouteHandler} = Router;
 import EventList from './components/event-list';
+import TickerList from './components/ticker-list';
 
 class App extends React.Component {
 
@@ -17,6 +22,11 @@ class App extends React.Component {
           <div className="row">
             <div className="col-xs-4">
               <h1>Stocks</h1>
+              <TickerList symbol="AAPL" />
+              <TickerList symbol="DJI" />
+              <TickerList symbol="GOOG" />
+              <TickerList symbol="XOM" />
+              <TickerList symbol="XRX" />
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
