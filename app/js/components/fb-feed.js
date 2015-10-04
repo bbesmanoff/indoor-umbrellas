@@ -1,47 +1,60 @@
 import React, { Component, Containers } from 'react';
-import Relay from 'react-relay';
-import graphql from 'graphql';
 
 import Story from './fb-story';
 
-class NewsFeed extends React.Component {
+export default class Feed extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {feed:[]}
+  }
+
+  componentDidMount() {
+    var that = this;
+      
+    //Asnyc FB calls
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '819934004772176', //TODO make this private/centralized
+        xfbml      : true,
+        version    : 'v2.3'
+      });
+        
+      var pageAccessToken = '';
+      var fbStatusRetrieved = FB.getLoginStatus(function(response){
+          pageAccessToken = response.authResponse.accessToken;
+          
+          FB.api("/me/feed", {access_token:pageAccessToken}, (response) => {
+              if (response && !response.error) {
+                var feed = response.data;
+                that.setState({
+                  feed
+                });
+              } else{}
+            }
+          );    
+      });
+    };
+      
+    //FB JS SDK  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));  
+  }
+
   render() {
-    var stories = this.props.viewer.stories; // `viewer` is the active user
+    console.log(this.state.feed);
+    var feed = this.state.feed
+    .map((e) => {
+      return (<Story key={e.id} time={e.created_time} message={e.message} story={e.story} />);
+    });
     return (
-      <View>
-        {stories.map(story => <Story story={story} />)}
-        <Button onClick={() => this.loadMore()}>Load More</Button>
-      </View>
+      <div>
+        {feed}
+      </div>
     );
   }
-
-  loadMore() {
-    // read current params
-    var count = this.props.queryParams.count;
-    // update params
-    this.props.setQueryParams({
-      count: count + 5
-    });
-  }
 }
-
-module.exports = Relay.createContainer(NewsFeed, {
-  queryParams: {
-    count: 3                             /* default to 3 stories */
-  },
-  queries: {
-    viewer: function(){
-       return graphql`
-          Viewer {
-            stories(first: <count>) {        /* fetch viewer's stories */
-              edges {                        /* traverse the graph */
-                node {
-                  ${Story.getQuery('story')}  /*compose child query */
-                }
-              }
-            }
-          }
-        `;
-    }
-  }
-});

@@ -75,10 +75,8 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
-server.get('/auth/facebook', passport.authenticate('facebook'), function(req, res) {
-    // The request will be redirected to Facebook for authentication, so this
-    // function will not be called.
-});
+server.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: 'user_posts' }), function(req, res){});
 
 // GET /auth/facebook/callback
 //   Use passport.authenticate() as route middleware to authenticate the

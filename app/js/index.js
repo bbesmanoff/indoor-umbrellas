@@ -22,9 +22,7 @@ class App extends React.Component {
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
-              <StatusUpdate title="Status Update" prompt="Enter a Facebook status update below:">
-              </StatusUpdate>
-
+              <Feed />
             </div>
             <div className="col-xs-4">
               <h1>{"Today's Events"}</h1>
