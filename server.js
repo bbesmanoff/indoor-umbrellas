@@ -4,7 +4,6 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import expressGraphql from 'express-graphql';
 
 import api from './api';
 
