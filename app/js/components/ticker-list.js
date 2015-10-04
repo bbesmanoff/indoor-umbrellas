@@ -5,7 +5,7 @@ import Ticker from './ticker'
 export default class TickerList extends Component {
   constructor(props) {
     super(props);
-    this.state = {stocks:[]};
+    this.state = {stocks:[]}
   }
 
   componentDidMount () {
@@ -16,7 +16,7 @@ export default class TickerList extends Component {
       stockRequest.open('GET', (`./api/stocks/${symbol}`));
     }
     else {
-      stockRequest.open('GET', './api/stocks');
+      stockRequest.open('GET', './api/top-stocks');
     }
     stockRequest.onload = function() {
       if (stockRequest.status === 200) {

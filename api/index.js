@@ -100,7 +100,7 @@ api.get('/stocks/:symbol', (req, res) => {
   res.send(stockInfo);
 });
 
-api.get('/stocks', (req, res) => {
+api.get('/top-stocks', (req, res) => {
   res.send(stocks);
 });
 
