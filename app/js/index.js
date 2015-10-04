@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
 import Feed from './components/fb-feed';
+import StatusUpdate from './components/fb-status-update';
 import EventList from './components/event-list';
 
 class App extends React.Component {
@@ -15,12 +16,17 @@ class App extends React.Component {
       <div>
         <Navbar page="Home"/>
         <div className="container">
+            <div id = "alert-placeholder"></div>
+        </div>
+        <div className="container">
           <div className="row">
             <div className="col-xs-4">
               <h1>Stocks</h1>
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>
+              <StatusUpdate title="Status Update" prompt="Enter a Facebook status update below:">
+              </StatusUpdate>
               <Feed />
             </div>
             <div className="col-xs-4">
