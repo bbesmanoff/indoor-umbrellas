@@ -27,6 +27,8 @@
 
 .calendar-item {
 	margin-bottom: 0px;
+	height: 7em;
+	overflow-y: auto;
 }
 
 .not-in-month {
@@ -40,4 +42,9 @@
 .cal-today {
 	font-weight: bold;
 	background-color: #DDF;
+}
+
+.cal-col {
+	width: 14.2%;
+	padding: 0px;
 }
