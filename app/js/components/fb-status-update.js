@@ -16,7 +16,6 @@ var StatusInput = React.createClass({
 var PostButton = React.createClass({
   getInitialState: function() {return null;},
   componentDidMount() {
-    console.log("mounted");
     //FB JS SDK  
     (function(d, s, id){
        var js, fjs = d.getElementsByTagName(s)[0];
@@ -35,17 +34,12 @@ var PostButton = React.createClass({
         
       FB.getLoginStatus(function(response){
           pageAccessToken = response.authResponse.accessToken;
-           
       });
     };
       
   },
   handleClick: function(event) {
-    //TODO post the status through FB, give the user an alert on success vs failure
-    console.log("clicked button");
-    //Asnyc FB calls
-    
-    FB.api('/me/feed', 'post', {message: statusText});
+     FB.api('/me/feed', 'post', {message: statusText}, postCallback);
   },
   render: function() {
     return (
@@ -54,11 +48,27 @@ var PostButton = React.createClass({
   }
 });
 
+function postCallback(result){
+    //Returns the id of the post that was just created
+    if(result.id !== null){
+         showAlert('alert-success', 'Your status has been posted successfully!');
+    } else{
+         showAlert('alert-danger', 'There was a problem posting your status.');
+    }
+}
+
+function showAlert(alerttype, message){
+    $('#alert-placeholder').append(
+             '<div id="alertdiv" class="alert fade in ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><strong>Success!  </strong> '+message+'</div>')
+
+    setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+        $("#alertdiv").remove();
+    }, 5000);
+}
+
 export default class StatusUpdate extends Component {
     
   render() {
-    var statusUpdateText = "";
-
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">

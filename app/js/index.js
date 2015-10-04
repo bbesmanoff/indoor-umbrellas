@@ -16,6 +16,9 @@ class App extends React.Component {
       <div>
         <Navbar page="Home"/>
         <div className="container">
+            <div id = "alert-placeholder"></div>
+        </div>
+        <div className="container">
           <div className="row">
             <div className="col-xs-4">
               <h1>Stocks</h1>
