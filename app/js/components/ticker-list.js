@@ -26,34 +26,14 @@ export default class TickerList extends Component {
   };
 
   render() {
-    var changeColorSet = {
-      positive: { color: "#008000" }, // Green
-      negative: { color: "#FF0000" }  // Red
-    };
-    var changeColor = (parseFloat(this.props.change) >= 0) ? changeColorSet.positive : changeColorSet.negative;
-
-    var stocks = this.state.stocks;
-
-    return (
-      <div className="panel panel-primary">
-        <div className="panel-heading">
-          <h3 className="panel-title">{this.props.symbol}</h3>
-        </div>
-        <div className="panel-body">
-          <p>{this.props.askprice} <span style={changeColor}>{this.props.change}</span></p>
-        </div>
-      </div>
-    );
-  render() {
-    console.log(this.props.date)
-    var events = this.state.events
+    var stocks = this.state.stocks
     .map((e) => {
       return (<Ticker key={e.symbol} symbol={e.symbol} price={e.price} high={e.high}
                     low={e.low} yrhigh={e.yrhigh} yrlow={e.yrlow} />);
     });
     return (
       <div>
-        {events}
+        {stocks}
       </div>
     );
   }
