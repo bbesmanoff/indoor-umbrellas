@@ -20,3 +20,24 @@
 .panel-primary {
 	margin-bottom: 5px;
 }
+
+.calendar-table {
+	width: 100%;
+}
+
+.calendar-item {
+	margin-bottom: 0px;
+}
+
+.not-in-month {
+	background-color: #DDD;
+}
+
+.cal-date {
+	font-size: 1.5em;
+}
+
+.cal-today {
+	font-weight: bold;
+	background-color: #DDF;
+}
