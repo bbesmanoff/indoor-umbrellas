@@ -46,7 +46,6 @@ export default class Feed extends Component {
   }
 
   render() {
-    console.log(this.state.feed);
     var feed = this.state.feed
     .filter((e) => {
       return (e.message || e.story);
