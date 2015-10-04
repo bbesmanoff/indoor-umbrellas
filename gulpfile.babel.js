@@ -6,7 +6,7 @@ import babelify from 'babelify';
 import source from 'vinyl-source-stream';
 
 gulp.task('default', ['build', 'server', 'watch']);
-gulp.task('build', ['build:css', 'build:html', 'build:images', 'build:indexjs', 'build:calendarjs', 'build:stocksjs']);
+gulp.task('build', ['build:css', 'build:html', 'build:images', 'build:js']);
 
 gulp.task('build:css', () => {
    return gulp.src(['./app/**/*.css'])
@@ -23,43 +23,19 @@ gulp.task('build:images', () => {
      .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build:indexjs', () => {
-  const b = browserify({
-    debug: process.env.NODE_ENV !== 'production',
-    insertGlobals: true
+gulp.task('build:js', () => {
+  ['index.js', 'calendar.js', 'stocks.js'].forEach((file) => {
+    const b = browserify({
+      debug: process.env.NODE_ENV !== 'production',
+      insertGlobals: true
+    });
+
+    return b.transform(babelify)
+      .add(`app/js/${file}`)
+      .bundle()
+      .pipe(source(file))
+      .pipe(gulp.dest('dist/js/'));
   });
-
-  return b.transform(babelify)
-    .add('app/js/index.js')
-    .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('dist/js/'));
-});
-
-gulp.task('build:calendarjs', () => {
-  const b = browserify({
-    debug: process.env.NODE_ENV !== 'production',
-    insertGlobals: true
-  });
-
-  return b.transform(babelify)
-    .add('app/js/calendar.js')
-    .bundle()
-    .pipe(source('calendar.js'))
-    .pipe(gulp.dest('dist/js/'));
-});
-
-gulp.task('build:stocksjs', () => {
-  const b = browserify({
-    debug: process.env.NODE_ENV !== 'production',
-    insertGlobals: true
-  });
-
-  return b.transform(babelify)
-    .add('app/js/stocks.js')
-    .bundle()
-    .pipe(source('stocks.js'))
-    .pipe(gulp.dest('dist/js/'));
 });
 
 gulp.task('server', () => {
