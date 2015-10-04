@@ -10,11 +10,16 @@ export default class TickerList extends Component {
 
   componentDidMount () {
     var stockRequest = new XMLHttpRequest();
-    var serviceURL = "https://www.quandl.com/api/v3/datasets/WIKI/" + this.props.symbol + ".json?api_key=j38ozgkznMzRCsKMzzZ4";
-    stockRequest.open("GET", serviceURL);
+    var symbol = this.props.symbol;
     var stockInfo, stocks;
-    stockRequest.onreadystatechange = function() {
-      if (stockRequest.readyState === XMLHttpRequest.DONE) {
+    if (this.props.symbol) {
+      stockRequest.open('GET', (`./api/stocks/${symbol}`));
+    }
+    else {
+      stockRequest.open('GET', './api/stocks');
+    }
+    stockRequest.onload = function() {
+      if (stockRequest.status === 200) {
         stockInfo = stockRequest.responseText;
         stocks = JSON.parse(stockInfo);
         this.setState({

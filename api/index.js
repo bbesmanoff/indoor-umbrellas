@@ -83,6 +83,23 @@ api.get('/events', (req, res) => {
   res.send(events);
 });
 
+api.get('/stocks/:symbol', (req, res) => {
+  var Quandl = require('quandl');
+  var quandl = new Quandl({
+    auth_token: process.env.quandl,
+    api_version: 3
+  });
+  var stockInfo = stocks.filter((e) => {
+    var data = quandl.dataset({source:"WIKI", table:e.symbol}, function(error, response){
+      if (error) {
+        console.log(error);
+      }
+      return response;
+    });
+  });
+  res.send(stockInfo);
+});
+
 api.get('/stocks', (req, res) => {
   res.send(stocks);
 });
