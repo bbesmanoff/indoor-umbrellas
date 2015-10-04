@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 var statusText = '';
+var pageAccessToken = '';
 
 var StatusInput = React.createClass({   
   getInitialState: function(){return null;},
@@ -14,10 +15,37 @@ var StatusInput = React.createClass({
 
 var PostButton = React.createClass({
   getInitialState: function() {return null;},
+  componentDidMount() {
+    console.log("mounted");
+    //FB JS SDK  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk')); 
+      
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '819934004772176', //TODO make this private/centralized
+        xfbml      : true,
+        version    : 'v2.3'
+      });
+        
+      FB.getLoginStatus(function(response){
+          pageAccessToken = response.authResponse.accessToken;
+           
+      });
+    };
+      
+  },
   handleClick: function(event) {
     //TODO post the status through FB, give the user an alert on success vs failure
+    console.log("clicked button");
+    //Asnyc FB calls
     
-    console.log('posted status: ' + statusText);
+    FB.api('/me/feed', 'post', {message: statusText});
   },
   render: function() {
     return (
