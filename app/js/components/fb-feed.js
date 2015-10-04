@@ -31,7 +31,7 @@ export default class Feed extends Component {
                 });
               } else{}
             }
-          );    
+          );
       });
     };
       
@@ -49,7 +49,7 @@ export default class Feed extends Component {
     console.log(this.state.feed);
     var feed = this.state.feed
     .map((e) => {
-      return (<Story key={e.id} time={e.created_time} message={e.message} story={e.story} />);
+      return (<Story key={e.id} created={e.created_time} message={e.message} story={e.story} />);
     });
     return (
       <div>
