@@ -4,9 +4,27 @@ const api = Router();
 var events = [
   {
     title:'R1 Release',
-    date:'10-03-2015',
-    startTime:'12:00pm',
+    date:'10-05-2015',
+    startTime:'8:00am',
     description:'We have to release our awesome web-app!'
+  },
+  {
+    title:'Plan R2',
+    date:'10-06-2015',
+    startTime:'8:00am',
+    description:'We have to plan our awesome second release!'
+  },
+  {
+    title:'R1 Presentation',
+    date:'10-05-2015',
+    startTime:'8:00am',
+    description:'We have to present our awesome web-app!'
+  },
+  {
+    title:'R1 Planning',
+    date:'10-04-2015',
+    startTime:'12:00pm',
+    description:'We have to plan our awesome web-app!'
   },
   {
     title:'Ice Cream Event',

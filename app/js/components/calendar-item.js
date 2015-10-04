@@ -10,10 +10,14 @@ export default class CalendarItem extends Component {
           ${today.toDateString() == propDay.toDateString() ? "cal-today" : ""}`;
     var textClass = `cal-date
           ${today.toDateString() == propDay.toDateString() ? "cal-today" : ""}`;
+    var itemEvents = this.props.events.map((e) => {
+      return (<p key={e.title} className="text-primary">{e.title}</p>);
+    });
     return (
       <div className={classNameString}>
         <div className="panel-body">
           <span className={textClass}>{propDay.getDate()}</span>
+          {itemEvents}
         </div>
       </div>
     );

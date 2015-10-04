@@ -27,6 +27,8 @@
 
 .calendar-item {
 	margin-bottom: 0px;
+	height: 7em;
+	overflow-y: auto;
 }
 
 .not-in-month {
@@ -42,6 +44,11 @@
 	background-color: #DDF;
 }
 
+.cal-col {
+	width: 14.2%;
+	padding: 0px;
+}
+
 .alert-placeholder{
-    margin: 20px;
+  margin: 20px;
 }
