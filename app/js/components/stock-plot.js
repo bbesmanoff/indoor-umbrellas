@@ -18,8 +18,7 @@ export default class StockPlot extends Component {
       labels: dates,
       datasets: [
       {
-          //label: `${this.props.column} for ${this.props.stock.dataset.dataset_code}`,
-          label: `foo`,
+          label: `${this.props.dataset.dataset_code}`,
           fillColor: "rgba(39, 128, 227, 0.2)",
           strokeColor: "rgba(39, 128, 227, 1)",
           pointColor: "rgba(39, 128, 227, 1)",
