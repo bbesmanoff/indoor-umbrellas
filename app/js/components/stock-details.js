@@ -34,21 +34,20 @@ export default class StockDetails extends Component {
     const stock = this.props.stock.dataset;
     const pairs = _.zip(stock.column_names, stock.data[0]).map((e) => {
     return (
-      <tr key={e.join('')}>
-        <td>{e[0]}</td>
-        <td>{e[1]}</td>
-      </tr>
+      <div key={e.join('')}>
+        {e[0]}: {e[1]}
+      </div>
     )});
 
     return (
-      <div>
-        <h1>{stock.name}</h1>
-        <table>
-          <tbody>
+      <div className="row">
+        <h2>{stock.name}</h2>
+        <div className="col-sm-2">
             {pairs}
-          </tbody>
-        </table>
-        <StockPlot dataset={this.props.stock.dataset} column='Open' height='400' width='400' />
+        </div>
+        <div className="col-sm-10">
+          <StockPlot number='20' dataset={this.props.stock.dataset} column='Open' height='400' width='800' />
+        </div>
       </div>
     );
   }

@@ -4,16 +4,14 @@ export default class StockPlot extends Component {
   componentDidMount() {
     // Get the context of the canvas element we want to select
     var ctx = document.getElementById("myChart").getContext("2d");
-    columnIndex = this.props.dataset.column_names.indexOf(this.props.column);
-    dateColumnPairs = this.props.dataset.data.map((o) => {
-      return o.map((data) => {
-        return [data[0], data[columnIndex]];
-      });
-    }).reverse();
-    dates = dateColumnPairs.map((e) => {
+    var columnIndex = this.props.dataset.column_names.indexOf(this.props.column);
+    var dateColumnPairs = this.props.dataset.data.map((o) => {
+      return [o[0], o[columnIndex]];
+    }).reverse().slice(-this.props.number);
+    var dates = dateColumnPairs.map((e) => {
       return e[0];
     })
-    columnValues = dateColumnPairs.map((e) => {
+    var columnValues = dateColumnPairs.map((e) => {
       return e[1];
     })
     var chartData = {

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
-import StockSearchBar from './components/StockSearchBar';
-import StockDetails from './components/StockDetails';
+import StockSearchBar from './components/stock-search-bar';
+import StockDetails from './components/stock-details';
 import StockPlot from './components/stock-plot';
 
 class App extends React.Component {
@@ -33,8 +33,10 @@ class App extends React.Component {
     return (
       <div>
         <Navbar page="Stocks"/>
-        <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
-        <StockDetails stock={this.state.stock}/>
+        <div className="container">
+          <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
+          <StockDetails stock={this.state.stock}/>
+        </div>
       </div>
     );
   }
