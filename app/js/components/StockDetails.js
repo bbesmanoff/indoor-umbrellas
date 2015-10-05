@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 
+import StockPlot from './stock-plot';
+
 export default class StockDetails extends Component {
   renderNoStock() {
     return (
@@ -46,6 +48,7 @@ export default class StockDetails extends Component {
             {pairs}
           </tbody>
         </table>
+        <StockPlot dataset={this.props.stock.dataset} column='Open' height='400' width='400' />
       </div>
     );
   }
