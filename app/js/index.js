@@ -4,6 +4,12 @@ import ReactDOM from 'react-dom';
 import Navbar from './components/navbar';
 import EventList from './components/event-list';
 
+//Have to manually remove auto-added fb hash
+//see here: https://github.com/jaredhanson/passport-facebook/issues/12#issuecomment-5913711
+if(window.location.hash && window.location.hash === "#_=_" || window.location.hash === "_=_"){
+    window.history.replaceState('', document.title, window.location.pathname);
+}
+
 class App extends React.Component {
 
   render() {

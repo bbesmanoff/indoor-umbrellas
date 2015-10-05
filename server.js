@@ -30,7 +30,7 @@ var FACEBOOK_APP_SECRET = "90ff6c2c0231f2b185acb5ecdc74dfae";
 //   have a database of user records, the complete Facebook profile is serialized
 //   and deserialized.
 passport.serializeUser(function (user, done) {
-    console.log('serializing user');
+    console.log('serializing user' + user.id);
     done(null, user);
 });
 
