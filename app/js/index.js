@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import Feed from './components/fb-feed';
 import StatusUpdate from './components/fb-status-update';
 import EventList from './components/event-list';
+import TickerList from './components/ticker-list';
 
 //Have to manually remove auto-added fb hash
 //see here: https://github.com/jaredhanson/passport-facebook/issues/12#issuecomment-5913711
@@ -28,6 +29,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col-xs-4">
               <h1>Stocks</h1>
+              <TickerList />
             </div>
             <div className="col-xs-4">
               <h1>Feed</h1>

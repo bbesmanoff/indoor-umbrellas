@@ -12,13 +12,8 @@ export default class TickerList extends Component {
     var stockRequest = new XMLHttpRequest();
     var symbol = this.props.symbol;
     var stockInfo, stocks;
-    if (this.props.symbol) {
-      stockRequest.open('GET', (`./api/stocks/${symbol}`));
-    }
-    else {
-      stockRequest.open('GET', './api/top-stocks');
-    }
-    stockRequest.onload = function() {
+    stockRequest.open('GET', './api/top-stocks');
+    stockRequest.onload = () => {
       if (stockRequest.status === 200) {
         stockInfo = stockRequest.responseText;
         stocks = JSON.parse(stockInfo);
