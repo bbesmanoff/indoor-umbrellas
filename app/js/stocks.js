@@ -15,7 +15,7 @@ class App extends React.Component {
       <div>
         <Navbar page="Stocks"/>
         <div className="container">
-          <StockPlot width='400' hieght='400' />
+          <StockPlot width='800' hieght='600' />
         </div>
       </div>
     );
