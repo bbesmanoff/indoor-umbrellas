@@ -109,7 +109,7 @@ api.get('/events', (req, res) => {
 api.get('/stocks/:symbol', (req, res) => {
   quandl.dataset({source:"WIKI", table:req.params.symbol}, function(error, response){
     if (error) {
-      console.log(error);
+      throw(error);
     }
     res.send(response);
   });
