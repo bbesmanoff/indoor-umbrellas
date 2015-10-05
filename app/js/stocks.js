@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
 import EventList from './components/event-list';
+import StockPlot from './components/stock-plot';
 
 class App extends React.Component {
 
@@ -14,6 +15,7 @@ class App extends React.Component {
       <div>
         <Navbar page="Stocks"/>
         <div className="container">
+          <StockPlot width='400' hieght='400' />
         </div>
       </div>
     );
