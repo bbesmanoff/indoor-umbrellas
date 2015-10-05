@@ -8,18 +8,31 @@ import StockDetails from './components/StockDetails';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {symbol: ''};
+    this.state = {stock: null};
   }
 
-  handleSymbolChange(symbol) {
-    this.setState({...this.getState(), symbol});
+  handleSymbolChange() {
+    const symbol = document.getElementById('stock-search-input').value;
+    if (symbol === '') {
+      this.setState({...this.state, stock: null});
+    } else {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/api/stocks/${symbol}`);
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          const stock = JSON.parse(xhr.responseText);
+          this.setState({...this.state, stock});
+        }
+      };
+      xhr.send();
+    }
   }
 
   render() {
     return (
       <div>
         <Navbar page="Stocks"/>
-        <StockSearchBar onSubmit={this.handleSymbolChange.bind(this)} />
+        <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
         <StockDetails stock={this.state.stock}/>
       </div>
     );
