@@ -30,7 +30,7 @@ var FACEBOOK_APP_SECRET = "90ff6c2c0231f2b185acb5ecdc74dfae";
 //   have a database of user records, the complete Facebook profile is serialized
 //   and deserialized.
 passport.serializeUser(function (user, done) {
-    console.log('serializing user');
+    console.log('serializing user' + user.id);
     done(null, user);
 });
 
@@ -46,7 +46,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: 'http://vm344b.se.rit.edu/auth/facebook/callback'
 }, function (accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
@@ -86,28 +86,22 @@ server.get('/auth/facebook/callback',
          passport.authenticate('facebook', { failureRedirect: '/login' }),
          function(req, res) {
   console.log('authentication passed, redirecting to home page');
-  res.redirect('/home');
-});
-
-server.get('/login', ensureAuthenticated, function (req, res) {
-    res.redirect('/home');
+  res.redirect('/index.html');
 });
 
 
 server.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/login');
+    res.redirect('/login.html');
 });
 
+server.get('/', ensureAuthenticated, function (req, res) {
+    res.redirect('/index.html');
+});
 
 if (server.get('env') !== 'production') {
   server.use('/', express.static('dist'));
-
-  server.get('/home', function (req, res) {
-    res.sendFile('home.html',  {root: path.join(__dirname, 'dist')})
-  });
 }
-
 
 server.use('/api', api);
 
