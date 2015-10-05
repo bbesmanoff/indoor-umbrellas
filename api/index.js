@@ -107,15 +107,12 @@ api.get('/events', (req, res) => {
 });
 
 api.get('/stocks/:symbol', (req, res) => {
-  var stockInfo = stocks.filter((e) => {
-    var data = quandl.dataset({source:"WIKI", table:e.symbol}, function(error, response){
-      if (error) {
-        console.log(error);
-      }
-      return response;
-    });
+  quandl.dataset({source:"WIKI", table:req.params.symbol}, function(error, response){
+    if (error) {
+      throw(error);
+    }
+    res.send(response);
   });
-  res.send(stockInfo);
 });
 
 api.get('/top-stocks', (req, res) => {

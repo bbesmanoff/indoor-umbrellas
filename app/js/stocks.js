@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Navbar from './components/navbar';
 import StockSearchBar from './components/StockSearchBar';
 import StockDetails from './components/StockDetails';
+import StockPlot from './components/stock-plot';
 
 class App extends React.Component {
   constructor(props) {
