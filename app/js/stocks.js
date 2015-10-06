@@ -7,7 +7,7 @@ import StockDetails from './components/stock-details';
 import StockPlot from './components/stock-plot';
 import Chat from './components/chat';
 
-import getStockData from './util/stock-utils';
+import {getStockData} from './util/stock-utils';
 
 class App extends React.Component {
   constructor(props) {
