@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "gulp",
-    "test": "mocha --compilers js:babel/register"
+    "test": "gulp build; mocha --compilers js:babel/register"
   },
   "dependencies": {
     "express": "^4.13.3",
