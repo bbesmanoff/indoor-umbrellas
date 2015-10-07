@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Ticker from './ticker'
+import {getStockData} from '../util/stock-utils';
 
 export default class TickerList extends Component {
   constructor(props) {
@@ -17,8 +18,12 @@ export default class TickerList extends Component {
       if (stockRequest.status === 200) {
         stockInfo = stockRequest.responseText;
         stocks = JSON.parse(stockInfo);
-        this.setState({
-          stocks
+        stocks.forEach((symbol) => {
+          getStockData(symbol).then((stock) => {
+            this.setState({
+              stocks: [...this.state.stocks, stock]
+            });
+          });
         });
       }
     }
@@ -26,8 +31,7 @@ export default class TickerList extends Component {
   };
 
   render() {
-    var stocks = this.state.stocks
-    .map((e) => {
+    var stocks = this.state.stocks.map((e) => {
       return (<Ticker key={e.symbol} symbol={e.symbol} price={e.price} high={e.high}
                     low={e.low} yrhigh={e.yrhigh} yrlow={e.yrlow} />);
     });
