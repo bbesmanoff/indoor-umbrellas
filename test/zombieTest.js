@@ -13,10 +13,10 @@ describe('User visits landing page', function(){
 	});
 
 	it('Successfull landing', function() {
-        browser.assert.success();
-    });
+		browser.assert.success();
+	});
 
-    it('navbar loaded', function() {
+	it('', function() {
 		browser.assert.elements('nav',1);
-    });
+	});
 });
