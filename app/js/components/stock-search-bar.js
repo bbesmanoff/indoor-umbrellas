@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactTestTools from 'react-addons-test-utils';
 
 export default class StockSearchBar extends Component {
   onTextChange(e) {
