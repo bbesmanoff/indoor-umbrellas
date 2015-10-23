@@ -1,4 +1,5 @@
-require('mocha-jsdom')();
+require('mocha-jsdom')({skipWindowCheck: true});
+
 import expect from 'expect.js';
 import sinon from 'sinon';
 
