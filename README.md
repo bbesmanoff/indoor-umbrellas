@@ -23,3 +23,9 @@ through the use of `express.static()`.  This is turned off when the app is in
 production, as the front-facing web server will serve the static files.
 
 [gulp]: http://gulpjs.com/
+
+### Environment Settings
+This project uses [dotenv](https://github.com/motdotla/dotenv) to store its
+sensitive information.  The file `.env` is appropriately ignored by git.  To
+construct it, copy `env.sample` to `.env` at the root of the project and edit
+it to include the information you need.
