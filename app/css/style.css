@@ -4,12 +4,8 @@
 	left:0em;
 	width:100%;
 	/* styling bellow */
-	background-color:black;
-	font-family: 'tahoma';
-	font-size:15px;
+	background-color:#1a6ecc;
 	color:white;
-	opacity:0.6; /* transparency */
-	filter:alpha(opacity=60); /* IE transparency */
 }
 
 .description_content {
