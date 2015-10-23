@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import Quandl from 'quandl';
 var quandl = new Quandl({
-  auth_token: process.env.quandl,
+  auth_token: process.env.QUANDL_API_KEY,
   api_version: 3
 });
 
