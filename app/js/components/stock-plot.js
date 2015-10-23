@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class StockPlot extends Component {
-  componentDidMount() {
+  createGraph() {
     // Get the context of the canvas element we want to select
     var ctx = document.getElementById("myChart").getContext("2d");
     var columnIndex = this.props.dataset.column_names.indexOf(this.props.column);
@@ -30,6 +30,14 @@ export default class StockPlot extends Component {
     };
 
     var myLineChart = new Chart(ctx).Line(chartData);
+  }
+
+  componentDidMount() {
+    this.createGraph();
+  }
+
+  componentDidUpdate() {
+    this.createGraph();
   }
 
   render() {
