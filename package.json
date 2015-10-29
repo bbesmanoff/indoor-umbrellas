@@ -22,6 +22,7 @@
     "express-session": "^1.11.3",
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
+    "history": "^1.12.5",
     "jsdom": "^6.5.1",
     "lodash": "^3.10.1",
     "mocha": "^2.3.2",
@@ -31,6 +32,7 @@
     "react-addons-test-utils": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^3.0.1",
+    "react-router": "^1.0.0-rc3",
     "redux": "^3.0.2",
     "sinon": "^1.17.1",
     "vinyl-source-stream": "^1.1.0"
