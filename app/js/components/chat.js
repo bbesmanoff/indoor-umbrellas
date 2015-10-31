@@ -10,6 +10,7 @@ export default class MessageList extends React.Component {
         this.state = {
             messages:[{
                 timeStamp: Date.now(), 
+                user: 'SYSTEM',
 				text: "Welcome to the test chat app!"
             }]
         }
@@ -32,6 +33,7 @@ export default class MessageList extends React.Component {
 		var input = document.getElementById('message-input');
 		var message = {
 			timeStamp: Date.now(),
+            user: 'USER1', //TODO update to be fb user id
 			text: input.value
 		};
  
@@ -52,16 +54,18 @@ export default class MessageList extends React.Component {
 	}
     
     render() {
+        
         return (
                 <div>
                     <h2>Messages</h2>
-                    <ul className="message-list">
+                    <div className="message-list">
                         {this.state.messages.map(function(message) {
+                            var formattedDate = new Date(message.timeStamp).toUTCString().replace(" GMT","");
                             return(
-                                <li key={message.timeStamp}>{message.text}</li>
+                                <span key={message.timeStamp}><b>{message.user}:</b> {message.text}<br /><i>{formattedDate}</i><br /></span>
                             );
                         })}
-                    </ul>
+                    </div>
                     <form onSubmit={this.postIt} ref={(ref) => this.form = ref}>
                         <input type="text" id="message-input" size="40" placeholder="Type your message here" />
                         <button>Post it!</button>
