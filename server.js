@@ -4,6 +4,8 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import socketio from 'socket.io';
+import http from 'http';
 
 import api from './api';
 
@@ -104,5 +106,21 @@ if (server.get('env') !== 'production') {
 }
 
 server.use('/api', api);
+
+//Chat server 
+var chatServer = http.createServer(server);
+var io = socketio.listen(chatServer);
+// server events
+io.on('connection', function(socket){
+	console.log('a user connected');
+	socket.on('disconnect', function(){
+		console.log('a user disconnected');
+	});
+	socket.on('messageAdded', function(message) {
+		// io.emit('messageAdded', message); // broadcast to all clients
+		socket.broadcast.emit('messageAdded', message); // broadcast to all but the sender
+	});
+})
+chatServer.listen(8080);
 
 export default server;
