@@ -32,6 +32,21 @@ export default class Feed extends Component {
               } else{}
             }
           );
+          
+          //get and store the fb user name/picture
+          FB.api("/"+response.authResponse.userID, {access_token:pageAccessToken}, (response) => {
+              if (response && !response.error) {
+                document.cookie="username="+response.name;
+              } else{}
+            }
+          );
+          FB.api("/"+response.authResponse.userID+"/picture?type=small", {access_token:pageAccessToken}, (response) => {
+              if (response && !response.error) {
+                var userData = response.data;
+                document.cookie="userPictureSrc="+userData.url;
+              } else{}
+            }
+          );
       });
     };
       
