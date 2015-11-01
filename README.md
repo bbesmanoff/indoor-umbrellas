@@ -7,10 +7,11 @@ First, you must have several dependencies installed:
 
 * Node (>= 4.1.0)
 * NPM (>= 2.14.0)
+* MySQL (>= 5.6)
 
 Then, clone the repo.  `cd` into that directory and run `npm install`.  This
-will pull down all the project dependencies.  Afterwards, run `npm start` to
-launch the server.
+will pull down all the project dependencies.  Next, run `npm run migrations` to
+prepare the database.  Afterwards, run `npm start` to launch the server.
 
 ## Project Setup
 [Gulp][gulp] is used to build and serve the project.  Behind the scenes, `npm
