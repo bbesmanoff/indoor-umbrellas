@@ -9,16 +9,16 @@ export default class ChatMessage extends React.Component {
     //Custom classes/formatting based on sent/received message type
     if(this.props.received){
         msgType= "messages msg_receive";
+        sentAvatarClass= " hidden";
         receivedAvatarClass = "col-md-2 col-xs-2 avatar avatar-received";
-        sentAvatarClass= "col-md-2 col-xs-2 avatar avatar-sent hidden";
     }else{
         msgType="messages msg_sent";
-        receivedAvatarClass = "col-md-2 col-xs-2 avatar avatar-received hidden";
+        receivedAvatarClass = " hidden";
         sentAvatarClass= "col-md-2 col-xs-2 avatar avatar-sent";
     }
       
     return(
-        <div className="message">
+        <div className="message row">
             <div className={receivedAvatarClass}>
                 <img src={this.props.userImg} className=" img-responsive " />
             </div>
