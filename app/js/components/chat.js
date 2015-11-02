@@ -110,7 +110,7 @@ export default class Chat extends React.Component {
                             </div>
                         </div>
                         
-                        <div className="message-list" id="message-list">
+                        <div className="message-list container-fluid" id="message-list">
                             {messages}
                         </div>
                         <div className="panel-footer" id="panel-footer">
