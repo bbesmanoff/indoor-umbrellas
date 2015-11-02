@@ -36,7 +36,9 @@ export default class Feed extends Component {
           //get and store the fb user name/picture
           FB.api("/"+response.authResponse.userID, {access_token:pageAccessToken}, (response) => {
               if (response && !response.error) {
-                document.cookie="username="+response.name;
+                var spaceIndex = response.name.indexOf(" ");
+                var formattedName = response.name.substring(0, spaceIndex+2)+".";
+                document.cookie="username="+formattedName;
               } else{}
             }
           );

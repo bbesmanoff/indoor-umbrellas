@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
-import MessageList from './components/chat';
+import Chat from './components/chat';
 
 class App extends React.Component {
 
@@ -11,9 +11,7 @@ class App extends React.Component {
       <div>
         <Navbar page="Chat"/>
         <div className="container">
-          <h1>Chat App</h1>
-          <div className="container" id="messages"></div>
-          <MessageList />
+          <Chat />
         </div>
       </div>
     );
