@@ -9,7 +9,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        CalendarEvent.belongsTo(models.Account);
+        CalendarEvent.belongsTo(models.Account, {
+          foreignKey: 'account_id'
+        });
       }
     }
   });

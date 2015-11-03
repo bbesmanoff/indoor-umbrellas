@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Account.hasMany(models.CalendarEvent);
+        Account.hasMany(models.CalendarEvent, {
+          foreignKey: 'account_id'
+        });
       }
     }
   });
