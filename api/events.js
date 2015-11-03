@@ -1,10 +1,16 @@
 import {Router} from 'express';
+import * as db from './models';
+import bodyParser from 'body-parser';
+
 const events = Router();
+events.use(bodyParser.json());
 
 // Returns all events for the current user
 events.get('/', (req, res) => {
-  console.log(req.user);
-  res.send([]); // TODO
+  db.CalendarEvent.findAll({where: {account_id: req.user.id}})
+    .then((calendarEvents) => {
+      res.send(JSON.stringify(calendarEvents));
+    });
 });
 
 // Returns events on the specified date
@@ -20,8 +26,11 @@ events.get('/:date', (req, res) => {
 
 // Creates a new event
 events.post('/', (req, res) => {
-  console.log(req.user);
-  console.log(req.body.newEvent);
+  const newEvent = {...req.body.newEvent, account_id: req.user.id};
+
+  db.CalendarEvent.create(newEvent).then(() => {
+    res.sendStatus(200);
+  })
 });
 
 export default events;
