@@ -5,13 +5,16 @@
   "main": "server.js",
   "scripts": {
     "start": "gulp",
+    "migrations": "sequelize db:migrate",
     "test": "mocha --compilers js:babel/register --recursive"
   },
   "dependencies": {
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
+    "mysql": "^2.9.0",
     "passport": "^0.3.0",
-    "passport-facebook": "^2.0.0"
+    "passport-facebook": "^2.0.0",
+    "sequelize": "^3.13.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -32,6 +35,7 @@
     "react-dom": "^0.14.0",
     "react-redux": "^3.0.1",
     "redux": "^3.0.2",
+    "sequelize-cli": "^2.1.0",
     "sinon": "^1.17.1",
     "vinyl-source-stream": "^1.1.0"
   }
