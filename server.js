@@ -105,4 +105,11 @@ if (server.get('env') !== 'production') {
 
 server.use('/api', api);
 
+//Make sure this is at the bottom of all server get definitions. Middleware to capture any requests that
+//weren't captured by the routing, api, or other code above
+server.get('*', function(req,res){
+    res.redirect('/404.html');
+    //res.status(404).sendFile(__dirname + '/app/404.html');
+});
+
 export default server;
