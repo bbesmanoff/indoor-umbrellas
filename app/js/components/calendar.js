@@ -68,7 +68,7 @@ export default class Calendar extends Component {
     });
 
     return (
-      <div className="container">
+      <div className="">
         <div className="row">
           <div className="col-xs-1 cal-col text-primary">Sunday</div>
           <div className="col-xs-1 cal-col text-primary">Monday</div>
