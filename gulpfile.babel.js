@@ -24,7 +24,7 @@ gulp.task('build:images', () => {
 });
 
 gulp.task('build:js', () => {
-  ['index.js', 'calendar.js', 'stocks.js', 'chat.js'].forEach((file) => {
+  ['index.js', 'calendar.js', 'stocks.js'].forEach((file) => {
     const b = browserify({
       debug: process.env.NODE_ENV !== 'production',
       insertGlobals: true
