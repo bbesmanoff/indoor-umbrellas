@@ -11,7 +11,7 @@ export default class Chat extends React.Component {
             messages:[{
                 timeStamp: Date.now(),
                 user: 'SYSTEM',
-				text: "Welcome to the test chat app!",
+				text: "Welcome to the chat!",
                 userImgSrc: '../../images/defaultUserImage.png', 
                 received: true
             }]
