@@ -15,13 +15,20 @@ events.get('/', (req, res) => {
 
 // Returns events on the specified date
 events.get('/:date', (req, res) => {
-  var dateEvents = [].filter((e) => { // TODO
-    var eStringDate = new Date(e.date).toDateString();
-    var propsStringDate = new Date(req.params.date).toDateString();
-    return (eStringDate == propsStringDate);
-  });
-  res.send(dateEvents);
+  const searchDate = new Date(req.params.date);
 
+  const tomorrowDate = new Date(req.params.date);
+  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+
+  db.CalendarEvent.findAll({where: {
+    account_id: req.user.id,
+    startDateTime: {
+      $and: {
+        $gte: searchDate,
+        $lt: tomorrowDate
+      }
+    }
+  }}).then((calendarEvents) => res.send(JSON.stringify(calendarEvents)));
 });
 
 // Creates a new event
