@@ -6,4 +6,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh git@vm344b.se.rit.edu './pull_latest.sh'
+      - ssh $DEPLOY_USER@$DEPLOY_HOST './pull_latest.sh'
