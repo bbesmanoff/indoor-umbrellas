@@ -6,7 +6,7 @@ const browser = new Browser();
 describe('Visiting the site loggged off', function(){
 
 	before(function(done){
-		browser.visit('http://localhost:8080/', done);
+		browser.visit('http://localhost:3000/', done);
 	});
 
 	it('Successfull landing', function() {
@@ -14,16 +14,16 @@ describe('Visiting the site loggged off', function(){
 	});
 
 	xit('shouldnt be able to access the home page', function() {
-		browser.visit('http://localhost:8080/index.html', done);
+		browser.visit('http://localhost:3000/index.html', done);
 		//make sure we reload the landing page
 	});
 
 	xit('shouldnt be able to access the Calendar page', function() {
-		browser.visit('http://localhost:8080/calendar.html', done);
+		browser.visit('http://localhost:3000/calendar.html', done);
 	});
 
 	xit('shouldnt be able to access the Stocks page', function() {
-		browser.visit('http://localhost:8080/stocks.html', done);
+		browser.visit('http://localhost:3000/stocks.html', done);
 	});
 });
 
@@ -38,7 +38,7 @@ describe('Logging in', function(){
 describe('Testing homepage components', function(){
 
 	before(function(done){
-		browser.visit('http://localhost:8080/index.html', done);
+		browser.visit('http://localhost:3000/index.html', done);
 	});
 
 	it('Successfull landing', function() {

@@ -5,8 +5,8 @@ const browser = new Browser();
 
 describe('Testing Calendar Events', function(){
 	before(function(done){
-		server.listen(8080, () => {
-			browser.visit('http://localhost:8080/calendar.html', done);
+		server.listen(3000, () => {
+			browser.visit('http://localhost:3000/calendar.html', done);
 		});
 	});
 

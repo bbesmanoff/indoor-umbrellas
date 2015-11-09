@@ -5,7 +5,7 @@ const browser = new Browser();
 
 describe('Testing stocks', function(){
 	before(function(done){
-		browser.visit('http://localhost:8080/stocks.html', done);
+		browser.visit('http://localhost:3000/stocks.html', done);
 	});
 
 	it('should load navbar', function() {
