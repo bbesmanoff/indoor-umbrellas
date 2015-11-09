@@ -112,10 +112,7 @@ var chatServer = http.createServer(server);
 var io = socketio.listen(chatServer);
 // server events
 io.on('connection', function(socket){
-	console.log('a user connected');
-	socket.on('disconnect', function(){
-		console.log('a user disconnected');
-	});
+	socket.on('disconnect', function(){	});
 	socket.on('messageAdded', function(message) {
 		// io.emit('messageAdded', message); // broadcast to all clients
 		socket.broadcast.emit('messageAdded', message); // broadcast to all but the sender
