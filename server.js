@@ -99,9 +99,7 @@ server.get('/', ensureAuthenticated, function (req, res) {
     res.redirect('/index.html');
 });
 
-if (server.get('env') !== 'production') {
-  server.use('/', express.static('dist'));
-}
+server.use('/', express.static('dist'));
 
 server.use('/api', api);
 
