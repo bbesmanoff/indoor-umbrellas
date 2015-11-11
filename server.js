@@ -48,7 +48,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: 'http://vm344b.se.rit.edu/auth/facebook/callback'
+    callbackURL: '/auth/facebook/callback'
 }, function (accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
@@ -101,9 +101,7 @@ server.get('/', ensureAuthenticated, function (req, res) {
     res.redirect('/index.html');
 });
 
-if (server.get('env') !== 'production') {
-  server.use('/', express.static('dist'));
-}
+server.use('/', express.static('dist'));
 
 server.use('/api', api);
 
@@ -119,5 +117,12 @@ io.on('connection', function(socket){
 	});
 })
 chatServer.listen(8080);
+
+//Make sure this is at the bottom of all server get definitions. Middleware to capture any requests that
+//weren't captured by the routing, api, or other code above
+server.get('*', function(req,res){
+    res.redirect('/404.html');
+    //res.status(404).sendFile(__dirname + '/app/404.html');
+});
 
 export default server;
