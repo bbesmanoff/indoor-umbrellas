@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Navbar from './components/navbar';
 import Calendar from './components/calendar';
+import Chat from './components/chat';
 
 class App extends React.Component {
 
@@ -18,6 +19,7 @@ class App extends React.Component {
             <Calendar date={today}/>
           </div>
         </div>
+        <Chat />
       </div>
     );
   }

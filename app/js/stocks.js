@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import StockSearchBar from './components/stock-search-bar';
 import StockDetails from './components/stock-details';
 import StockPlot from './components/stock-plot';
+import Chat from './components/chat';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
           <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
           <StockDetails stock={this.state.stock}/>
         </div>
+        <Chat />
       </div>
     );
   }

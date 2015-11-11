@@ -4,6 +4,8 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import socketio from 'socket.io';
+import http from 'http';
 
 import api from './api';
 
@@ -102,6 +104,19 @@ server.get('/', ensureAuthenticated, function (req, res) {
 server.use('/', express.static('dist'));
 
 server.use('/api', api);
+
+//Chat server 
+var chatServer = http.createServer(server);
+var io = socketio.listen(chatServer);
+// server events
+io.on('connection', function(socket){
+	socket.on('disconnect', function(){	});
+	socket.on('messageAdded', function(message) {
+		// io.emit('messageAdded', message); // broadcast to all clients
+		socket.broadcast.emit('messageAdded', message); // broadcast to all but the sender
+	});
+})
+chatServer.listen(8080);
 
 //Make sure this is at the bottom of all server get definitions. Middleware to capture any requests that
 //weren't captured by the routing, api, or other code above
