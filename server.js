@@ -8,6 +8,7 @@ import socketio from 'socket.io';
 import http from 'http';
 
 import api from './api';
+import * as Models from './api/models';
 
 const server = express();
 const FacebookStrategy = passport_facebook.Strategy;
@@ -50,14 +51,10 @@ passport.use(new FacebookStrategy({
     clientSecret: FACEBOOK_APP_SECRET,
     callbackURL: '/auth/facebook/callback'
 }, function (accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
     process.nextTick(function () {
-
-      // To keep the example simple, the user's Facebook profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Facebook account with a user record in your database,
-      // and return that user instead.
-        return done(null, profile);
+      Models.Account.findOrCreate({where: {facebook_id: profile.id}}).spread(function(user) {
+        done(null, user);
+      });
     });
 }));
 
