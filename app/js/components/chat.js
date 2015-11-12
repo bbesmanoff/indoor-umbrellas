@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ChatMessage from './chat-message';
 
-var socket = io.connect('http://localhost:8080');
+//Rebuild chat server location
+var getUrl = window.location;
+var baseUrl = getUrl.protocol + "//" + getUrl.hostname;
+var socket = io.connect(baseUrl +":3030"); //same port from serverjs chat server
 var that;
 
 export default class Chat extends React.Component {

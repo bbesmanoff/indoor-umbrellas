@@ -116,13 +116,12 @@ io.on('connection', function(socket){
 		socket.broadcast.emit('messageAdded', message); // broadcast to all but the sender
 	});
 })
-chatServer.listen(8080);
+chatServer.listen(3030);
 
 //Make sure this is at the bottom of all server get definitions. Middleware to capture any requests that
 //weren't captured by the routing, api, or other code above
 server.get('*', function(req,res){
     res.redirect('/404.html');
-    //res.status(404).sendFile(__dirname + '/app/404.html');
 });
 
 export default server;
