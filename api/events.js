@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 
 const events = Router();
 events.use(bodyParser.json());
+events.use(bodyParser.urlencoded());
 
 // Returns all events for the current user
 events.get('/', (req, res) => {
@@ -33,10 +34,17 @@ events.get('/:date', (req, res) => {
 
 // Creates a new event
 events.post('/', (req, res) => {
-  const newEvent = {...req.body.newEvent, account_id: req.user.id};
+  const newEvent = {
+    'title': req.body.title,
+    'location': req.body.location,
+    'startDateTime': req.body.startDateTime,
+    'endDateTime': req.body.endDateTime,
+    'description': req.body.description,
+    account_id: req.user.id
+  };
 
   db.CalendarEvent.create(newEvent).then(() => {
-    res.sendStatus(200);
+    res.sendStatus(204);
   })
 });
 

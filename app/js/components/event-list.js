@@ -37,8 +37,8 @@ export default class EventList extends Component {
 
   render() {
     var events = this.state.events.map((e) => {
-      return (<Event key={e.title} title={e.title} date={e.date} description={e.description}
-                    startTime={e.startTime} endTime={e.endTime} />);
+      return (<Event key={e.title} title={e.title} description={e.description}
+                    startDateTime={e.startDateTime} endDateTime={e.endDateTime} />);
     });
     return (
       <div>
