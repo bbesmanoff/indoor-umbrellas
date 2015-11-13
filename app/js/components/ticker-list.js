@@ -36,8 +36,9 @@ export default class TickerList extends Component {
 
   render() {
     var stocks = this.state.stocks.map((e) => {
-      return (<Ticker key={e.symbol} symbol={e.symbol} price={e.price} high={e.high}
-                    low={e.low} yrhigh={e.yrhigh} yrlow={e.yrlow} />);
+      const data = e.dataset;
+
+      return <Ticker key={data.name} symbol={data.name} price={data.data[0][1]} />
     });
 
     return (

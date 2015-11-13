@@ -18,7 +18,7 @@ api.get('/stocks/:symbol', (req, res) => {
 });
 
 api.get('/top-stocks', (req, res) => {
-  res.send(JSON.stringify(['XRX', 'XOM', 'GOOG', 'DJI', 'AAPL']));
+  res.send(JSON.stringify(['XRX', 'XOM', 'GOOG', 'AMZN', 'AAPL']));
 });
 
 api.use('/events', EventsRouter);
