@@ -36,6 +36,9 @@ gulp.task('build:js', () => {
       .pipe(source(file))
       .pipe(gulp.dest('dist/js/'));
   });
+
+  // lib files
+  gulp.src('app/js/lib/*.js').pipe(gulp.dest('dist/js/lib'));
 });
 
 gulp.task('server', () => {

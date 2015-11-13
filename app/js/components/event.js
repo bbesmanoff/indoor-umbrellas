@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Event extends Component {
   render() {
-    var dateString = `${this.props.date}, ${this.props.startTime} ${(this.props.endTime ? `- ${this.props.endTime}` : "")}`;
+    var dateString = `${this.props.startDateTime} ${(this.props.endDateTime ? `- ${this.props.endDateTime}` : "")}`;
 
     return (
       <div className="panel panel-primary">
