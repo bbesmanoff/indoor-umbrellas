@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 export default class Event extends Component {
   render() {
-    var dateString = `${this.props.startDateTime} ${(this.props.endDateTime ? `- ${this.props.endDateTime}` : "")}`;
-
+    var startTime = new Date(this.props.startDateTime);
+    var endTime = new Date(this.props.endDateTime);
+    var dateString = `${startTime.toLocaleTimeString()} - ${endTime.toLocaleTimeString()}`
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">
