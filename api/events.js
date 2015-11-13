@@ -34,7 +34,6 @@ events.get('/:date', (req, res) => {
 
 // Creates a new event
 events.post('/', (req, res) => {
-  console.log(req.body);
   const newEvent = {
     'title': req.body.title,
     'location': req.body.location,
