@@ -7,7 +7,7 @@ export default class StockDetails extends Component {
   renderNoStock() {
     return (
       <strong>
-        Please search using the search bar (above|to the left).
+        Please search using the search bar above.
       </strong>
     );
   }

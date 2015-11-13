@@ -8,7 +8,7 @@ export default class Ticker extends Component {
           <h3 className="panel-title">{this.props.symbol}</h3>
         </div>
         <div className="panel-body">
-          <p>Current Price: {this.props.price}</p>
+          <p>Current Price: ${parseFloat(this.props.price).toFixed(2)}</p>
         </div>
       </div>
     );
