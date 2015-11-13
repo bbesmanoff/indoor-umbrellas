@@ -100,7 +100,7 @@ server.get('/', ensureAuthenticated, function (req, res) {
 
 server.use('/', express.static('dist'));
 
-server.use('/api', api);
+server.use('/api', ensureAuthenticated, api);
 
 //Chat server 
 var chatServer = http.createServer(server);
