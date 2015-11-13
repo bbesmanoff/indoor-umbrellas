@@ -7,6 +7,8 @@ import StockDetails from './components/stock-details';
 import StockPlot from './components/stock-plot';
 import Chat from './components/chat';
 
+import {getStockData} from './util/stock-utils';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,15 +20,9 @@ class App extends React.Component {
     if (symbol === '') {
       this.setState({...this.state, stock: null});
     } else {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/stocks/${symbol}`);
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          const stock = JSON.parse(xhr.responseText);
-          this.setState({...this.state, stock});
-        }
-      };
-      xhr.send();
+      getStockData(symbol).then((stock) => {
+        this.setState({...this.state, stock});
+      });
     }
   }
 
