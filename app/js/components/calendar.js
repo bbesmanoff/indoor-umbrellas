@@ -12,7 +12,7 @@ export default class Calendar extends Component {
     var eventString, events;
     var propDate = new Date(this.props.date);
     var dateString = `${propDate.getMonth()+1}-${propDate.getDate()}-${propDate.getFullYear()}`;
-    eventRequest.open('GET', `./api/events/`);
+    eventRequest.open('GET', `/api/events/`);
     eventRequest.onload = () => {
         if (eventRequest.status === 200) {
             eventString = eventRequest.responseText;
@@ -51,7 +51,7 @@ export default class Calendar extends Component {
     var rowItems = days.map((r) => {
       var dayItems = r.map((d)=> {
         var daysEvents = this.state.events.filter( (e) => {
-          var eDate = new Date(e.date);
+          var eDate = new Date(e.startDateTime);
           return eDate.toDateString() == d.toDateString();
         });
         return (
