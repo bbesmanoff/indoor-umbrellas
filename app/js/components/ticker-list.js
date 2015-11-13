@@ -6,7 +6,10 @@ import {getStockData} from '../util/stock-utils';
 export default class TickerList extends Component {
   constructor(props) {
     super(props);
-    this.state = {stocks:[]}
+    this.state = {
+      stocks: [],
+      requestedStocks: 0
+    };
   }
 
   componentDidMount () {
@@ -19,6 +22,7 @@ export default class TickerList extends Component {
         stockInfo = stockRequest.responseText;
         stocks = JSON.parse(stockInfo);
         stocks.forEach((symbol) => {
+          this.setState({...stocks, requestedStocks: this.state.requestedStocks + 1});
           getStockData(symbol).then((stock) => {
             this.setState({
               stocks: [...this.state.stocks, stock]
@@ -35,8 +39,13 @@ export default class TickerList extends Component {
       return (<Ticker key={e.symbol} symbol={e.symbol} price={e.price} high={e.high}
                     low={e.low} yrhigh={e.yrhigh} yrlow={e.yrlow} />);
     });
+
     return (
       <div>
+        <span>
+          {this.state.requestedStocks == this.state.stocks.length ?
+              "" : "Loading stocks, please wait..."}
+        </span>
         {stocks}
       </div>
     );
