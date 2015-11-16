@@ -67,10 +67,13 @@ export default class Chat extends React.Component {
  
     // get the message
     var input = document.getElementById('message-input');
+    var timeStamp = Date.now(),
+        user = that.getCookieValue("username"),
+        msgText = input.value;
     var message = {
-      timeStamp: Date.now(),
-      user: that.getCookieValue("username"),
-      text: input.value, 
+      timeStamp: timeStamp,
+      user: user,
+      text: msgText, 
       userImgSrc: that.getCookieValue("userPictureSrc"),
       received: false
     };
@@ -89,6 +92,22 @@ export default class Chat extends React.Component {
  
 	// emit to server so other clients can be updated
 	socket.emit('messageAdded', message);
+    
+    //post chat to api endpoint
+    that.postChat(user, timeStamp, msgText);
+  }
+
+  postChat(user, timeStamp, msgText){
+    const chatData = {
+      'from': user,
+      'date': timeStamp,
+      'message': msgText  
+    };
+      
+    var chatRequest = new XMLHttpRequest();
+    chatRequest.open('POST', `/api/chat/`);
+    chatRequest.setRequestHeader('Content-Type', 'application/json');
+    chatRequest.send(JSON.stringify(chatData));
   }
     
   render() {

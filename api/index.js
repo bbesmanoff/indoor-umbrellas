@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import Quandl from 'quandl';
 import EventsRouter from './events';
+import ChatRouter from './chat';
 var quandl = new Quandl({
   auth_token: process.env.QUANDL_API_KEY,
   api_version: 3
@@ -22,5 +23,6 @@ api.get('/top-stocks', (req, res) => {
 });
 
 api.use('/events', EventsRouter);
+api.use('/chat', ChatRouter);
 
 export default api;
