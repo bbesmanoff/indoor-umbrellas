@@ -13,6 +13,10 @@
 	text-align: center;
 }
 
+#download-chat-hist {
+    float: right;
+}
+
 .panel-primary {
 	margin-bottom: 5px;
 }

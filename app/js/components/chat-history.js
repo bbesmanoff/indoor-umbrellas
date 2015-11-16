@@ -18,6 +18,13 @@ export default class ChatHistory extends Component {
             this.setState({
               chatHistoryItems
             });
+            
+            //prepare text file
+            if (this.textFile !== null) {
+              window.URL.revokeObjectURL(this.textFile);
+            }
+            this.textFile = window.URL.createObjectURL(new Blob([chatString], {type: 'text/plain'}));
+            document.getElementById('download-chat-hist').href = this.textFile;
         }
         else {
           // request failed
@@ -29,11 +36,14 @@ export default class ChatHistory extends Component {
 
   render() {
       return (
-          <BootstrapTable data={this.state.chatHistoryItems} striped={true} hover={true} search={true}>
-              <TableHeaderColumn dataField="date" isKey={true}>Date</TableHeaderColumn>
-              <TableHeaderColumn dataField="from">Sender</TableHeaderColumn>
-              <TableHeaderColumn dataField="message">Message</TableHeaderColumn>
-          </BootstrapTable>
+          <div className="chat-history-table">
+              <a id="download-chat-hist" download="chat-log.txt">Download Chats</a>
+              <BootstrapTable data={this.state.chatHistoryItems} striped={true} hover={true} search={true}>
+                  <TableHeaderColumn dataField="date" isKey={true}>Date</TableHeaderColumn>
+                  <TableHeaderColumn dataField="from">Sender</TableHeaderColumn>
+                  <TableHeaderColumn dataField="message">Message</TableHeaderColumn>
+              </BootstrapTable>
+          </div>
       );
   }
 }
