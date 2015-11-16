@@ -19,4 +19,13 @@ chats.post('/', (req, res) => {
   })
 });
 
+// Returns chats
+chats.get('/', (req, res) => {
+  //return history ordered by date, more recent first
+  db.ChatHistory.findAll({order: 'date DESC'})
+    .then((chatHistoryItems) => {
+      res.send(JSON.stringify(chatHistoryItems));
+    });
+});
+
 export default chats;
