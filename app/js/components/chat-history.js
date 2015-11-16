@@ -35,11 +35,16 @@ export default class ChatHistory extends Component {
   }
 
   render() {
+      function dateFormatter(cell, row){
+        var formattedDate = new Date(parseInt(Date.parse(cell))).toUTCString().replace(" GMT","");
+        return formattedDate;
+      }
+      
       return (
           <div className="chat-history-table">
               <a id="download-chat-hist" download="chat-log.txt">Download Chats</a>
               <BootstrapTable data={this.state.chatHistoryItems} striped={true} hover={true} search={true}>
-                  <TableHeaderColumn dataField="date" isKey={true}>Date</TableHeaderColumn>
+                  <TableHeaderColumn dataField="date" isKey={true} dataFormat={dateFormatter}>Date</TableHeaderColumn>
                   <TableHeaderColumn dataField="from">Sender</TableHeaderColumn>
                   <TableHeaderColumn dataField="message">Message</TableHeaderColumn>
               </BootstrapTable>
