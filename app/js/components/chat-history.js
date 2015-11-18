@@ -36,7 +36,7 @@ export default class ChatHistory extends Component {
 
   render() {
       function dateFormatter(cell, row){
-        var formattedDate = new Date(parseInt(Date.parse(cell))).toUTCString().replace(" GMT","");
+        var formattedDate = new Date(parseInt(Date.parse(cell))).toLocaleString();
         return formattedDate;
       }
       
