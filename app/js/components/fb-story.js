@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Story extends React.Component {
   render() {
-    var formattedDate = new Date(parseInt(Date.parse(this.props.created))).toLocaleString();
+    var formattedDate = new Date(this.props.created).toLocaleString();
       
     return (
       <div className="panel panel-primary">
