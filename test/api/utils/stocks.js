@@ -1,5 +1,5 @@
 import expect from 'expect.js';
-import {reduceTransactionHistory} from '../../../api/utils/stocks';
+import {invariant, reduceTransactionHistory} from '../../../api/utils/stocks';
 
 describe('API Stock Utils', () => {
   describe('.reduceTransactionHistory', () => {
@@ -24,6 +24,44 @@ describe('API Stock Utils', () => {
       const result = transactions.reduce(reduceTransactionHistory, {});
 
       expect(result).to.eql({'KRTZ': {value: -10100, shares: 11}, 'AMZN': {value: -900, shares: 3}});
+    });
+  });
+
+  describe('.invariant', () => {
+    context('valid states', () => {
+      it('should allow zero held shares', () => {
+        const result = invariant([createTransaction('KRTZ', 0, 0)]);
+
+        expect(result).to.be(true);
+      });
+
+      it('should allow greater than 0 held shares', () => {
+        const result = invariant([createTransaction('KRTZ', 5, 0)]);
+
+        expect(result).to.be(true);
+      });
+
+      it('should allow multiple symbols in valid states', () => {
+        const result = invariant([createTransaction('KRTZ', 5, 0),
+          createTransaction('AMZN', 0)]);
+
+        expect(result).to.be(true);
+      });
+    });
+
+    context('invalid states', () => {
+      it('should not allow negative shares', () => {
+        const result = invariant([createTransaction('KRTZ', -2, 0)]);
+
+        expect(result).to.be(false);
+      });
+
+      it('should fail if any shares are negative', () => {
+        const result = invariant([createTransaction('AMZN', 50, 0),
+          createTransaction('KRTZ', -2, 0)]);
+
+        expect(result).to.be(false);
+      });
     });
   });
 });
