@@ -6,7 +6,7 @@ import {getStockData} from '../../app/js/util/stock-utils';
 describe('stockUtils', () => {
   describe('.getStockData()', () => {
     const symbol = 'GOOG';
-    const endpoint = `/api/stocks/${symbol}`;
+    const endpoint = `/api/stocks/search?symbol=${symbol}`;
     let requests;
 
     // replace XHR with a sinon object

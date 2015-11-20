@@ -7,7 +7,7 @@
 export function getStockData(symbol) {
   return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/stocks/${symbol}`);
+      xhr.open('GET', `/api/stocks/search?symbol=${symbol}`);
       xhr.onload = () => {
         if (xhr.status === 200) {
           resolve(JSON.parse(xhr.responseText));
