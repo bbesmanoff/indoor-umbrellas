@@ -1,7 +1,7 @@
 import expect from 'expect.js';
 import sinon from 'sinon';
 
-import {getStockData} from '../../app/js/util/stock-utils';
+import {getStockData} from '../../../app/js/util/stock-utils';
 
 describe('stockUtils', () => {
   describe('.getStockData()', () => {
