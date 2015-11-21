@@ -4,8 +4,11 @@ import passport from 'passport';
 import passport_facebook from 'passport-facebook';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import socketio from 'socket.io';
+import http from 'http';
 
 import api from './api';
+import * as Models from './api/models';
 
 const server = express();
 const FacebookStrategy = passport_facebook.Strategy;
@@ -46,16 +49,12 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: 'http://vm344b.se.rit.edu/auth/facebook/callback'
+    callbackURL: '/auth/facebook/callback'
 }, function (accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
     process.nextTick(function () {
-
-      // To keep the example simple, the user's Facebook profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Facebook account with a user record in your database,
-      // and return that user instead.
-        return done(null, profile);
+      Models.Account.findOrCreate({where: {facebook_id: profile.id}}).spread(function(user) {
+        done(null, user);
+      });
     });
 }));
 
@@ -99,10 +98,27 @@ server.get('/', ensureAuthenticated, function (req, res) {
     res.redirect('/index.html');
 });
 
-if (server.get('env') !== 'production') {
-  server.use('/', express.static('dist'));
-}
+server.use('/', express.static('dist'));
 
-server.use('/api', api);
+server.use('/api', ensureAuthenticated, api);
+
+//Chat server 
+var chatServer = http.createServer(server);
+var io = socketio.listen(chatServer);
+// server events
+io.on('connection', function(socket){
+	socket.on('disconnect', function(){	});
+	socket.on('messageAdded', function(message) {
+		// io.emit('messageAdded', message); // broadcast to all clients
+		socket.broadcast.emit('messageAdded', message); // broadcast to all but the sender
+	});
+})
+chatServer.listen(3030);
+
+//Make sure this is at the bottom of all server get definitions. Middleware to capture any requests that
+//weren't captured by the routing, api, or other code above
+server.get('*', function(req,res){
+    res.redirect('/404.html');
+});
 
 export default server;

@@ -1,7 +1,7 @@
- import expect from 'expect';
+import expect from 'expect.js';
 
 describe('the world', () => {
   it('is sane', () => {
-    expect(true).toBe(true);
+    expect(true).to.be(true);
   });
 });

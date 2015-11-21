@@ -24,7 +24,7 @@ gulp.task('build:images', () => {
 });
 
 gulp.task('build:js', () => {
-  ['index.js', 'calendar.js', 'stocks.js'].forEach((file) => {
+  ['index.js', 'calendar.js', 'stocks.js', '404.js', 'chatHistory.js'].forEach((file) => {
     const b = browserify({
       debug: process.env.NODE_ENV !== 'production',
       insertGlobals: true
@@ -36,6 +36,9 @@ gulp.task('build:js', () => {
       .pipe(source(file))
       .pipe(gulp.dest('dist/js/'));
   });
+
+  // lib files
+  gulp.src('app/js/lib/*.js').pipe(gulp.dest('dist/js/lib'));
 });
 
 gulp.task('server', () => {
