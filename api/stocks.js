@@ -7,13 +7,6 @@ stocksEndpoint.get('/top-stocks', (req, res) => {
   res.send(JSON.stringify(['XRX', 'XOM', 'GOOG', 'AMZN', 'AAPL']));
 });
 
-/*
-*
-* GET /api/stocks/GOOG
-* GET /api/stocks/top-stocks
-*/
-
-// GET /api/stocks/search?symbol=
 stocksEndpoint.get('/search', (req, res) => {
   const quandl = new Quandl({
     auth_token: process.env.QUANDL_API_KEY,
