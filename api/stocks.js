@@ -7,6 +7,12 @@ import bodyParser from 'body-parser';
 const stocksEndpoint = express.Router();
 stocksEndpoint.use(bodyParser.json());
 
+stocksEndpoint.get('/transactions', (req, res) => {
+  db.StockLedger.findAll({user_id: req.user.id}).then((transactions) => {
+    res.send(JSON.stringify(transactions));
+  });
+});
+
 stocksEndpoint.post('/transactions', (req, res) => {
   db.StockLedger.findAll({user_id: req.user.id}).then((transactions) => {
     const transaction = {...req.body.transaction, user_id: req.user.id};
