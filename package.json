@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gulp",
     "migrations": "sequelize db:migrate",
-    "test": "gulp build; mocha --compilers js:babel/register --recursive"
+    "pretest": "gulp testBuild",
+    "test": "mocha --compilers js:babel/register --recursive"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
