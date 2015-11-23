@@ -6,6 +6,7 @@ import StockSearchBar from './components/stock-search-bar';
 import StockDetails from './components/stock-details';
 import StockPlot from './components/stock-plot';
 import Chat from './components/chat';
+import StockTransactionPanel from './components/stock-transaction-panel';
 
 import {getStockData} from './util/stock-utils';
 
@@ -31,8 +32,15 @@ class App extends React.Component {
       <div>
         <Navbar page="Stocks"/>
         <div className="container">
-          <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
-          <StockDetails stock={this.state.stock}/>
+          <div className="row">
+            <StockSearchBar onSearch={this.handleSymbolChange.bind(this)} />
+          </div>
+          <div className="row">
+            <StockTransactionPanel stock={this.state.stock} />
+          </div>
+          <div className="row">
+            <StockDetails stock={this.state.stock}/>
+          </div>
         </div>
         <Chat />
       </div>
