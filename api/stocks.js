@@ -7,14 +7,21 @@ import bodyParser from 'body-parser';
 const stocksEndpoint = express.Router();
 stocksEndpoint.use(bodyParser.json());
 
+// returns the `where` filter for a given user
+const getFilterFor = (userId) => ({where: {user_id: userId}});
+
 stocksEndpoint.get('/transactions', (req, res) => {
-  db.StockLedger.findAll({user_id: req.user.id}).then((transactions) => {
+  const filter = getFilterFor(req.user.id);
+
+  db.StockLedger.findAll(filter).then((transactions) => {
     res.send(JSON.stringify(transactions));
   });
 });
 
 stocksEndpoint.post('/transactions', (req, res) => {
-  db.StockLedger.findAll({user_id: req.user.id}).then((transactions) => {
+  const filter = getFilterFor(req.user.id);
+
+  db.StockLedger.findAll(filter).then((transactions) => {
     const transaction = {...req.body.transaction, user_id: req.user.id};
 
     if (invariant([...transactions, transaction])) {

@@ -26,6 +26,9 @@ export default class Navbar extends Component {
               <li className={this.props.page=="Stocks"?"active":""}><a href="/stocks.html">Stocks <span className="sr-only">(current)</span></a></li>
             </ul>
             <ul className="nav navbar-nav">
+              <li className={this.props.page=="StockHistory"?"active":""}><a href="/stockHistory.html">Stock History <span className="sr-only">(current)</span></a></li>
+            </ul>
+            <ul className="nav navbar-nav">
               <li className={this.props.page=="ChatHistory"?"active":""}><a href="/chatHistory.html">Chat History <span className="sr-only">(current)</span></a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
