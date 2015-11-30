@@ -32,6 +32,11 @@ stocksEndpoint.post('/transactions', (req, res) => {
   });
 });
 
+stocksEndpoint.delete('/transactions', (req, res) => {
+  db.StockLedger.delete({where: {user_id: req.user.id}})
+    .then(() => res.sendStatus(200));
+});
+
 stocksEndpoint.get('/top-stocks', (req, res) => {
   res.send(JSON.stringify(['XRX', 'XOM', 'GOOG', 'AMZN', 'AAPL']));
 });
