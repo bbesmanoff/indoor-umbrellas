@@ -33,6 +33,19 @@ export default class StockHistory extends Component {
     stockRequest.send();
   }
 
+  deleteHistory() {
+    const request = new XMLHttpRequest();
+    request.open('DELETE', '/api/stocks/transactions');
+
+    request.onload = () => {
+      if (request.status === 200) {
+        this.setState({...this.state, stockHistoryItems: []});
+      }
+    };
+
+    request.send();
+  }
+
   render() {
       function dateFormatter(cell, row){
         var formattedDate = new Date(cell).toLocaleString();
@@ -44,16 +57,25 @@ export default class StockHistory extends Component {
       return `${transactionType} ${Math.abs(cell)} shares`;
     }
 
-      return (
+    return (
+      <div className='container'>
+        <div className='row'>
           <div className="stock-history-table">
-              <a id="download-stock-hist" download="stock-log.txt">Download Stocks</a>
-              <BootstrapTable data={this.state.stockHistoryItems} striped={true} hover={true} search={true}>
-                  <TableHeaderColumn dataField="createdAt" isKey={true} dataFormat={dateFormatter}>Date</TableHeaderColumn>
-                  <TableHeaderColumn dataField="symbol">Symbol</TableHeaderColumn>
-                  <TableHeaderColumn dataField="price">Price</TableHeaderColumn>
-                  <TableHeaderColumn dataField="delta" dataFormat={deltaFormatter}>Transaction</TableHeaderColumn>
-              </BootstrapTable>
+            <a id="download-stock-hist" download="stock-log.txt">Download Stocks</a>
+            <BootstrapTable data={this.state.stockHistoryItems} striped={true} hover={true} search={true}>
+              <TableHeaderColumn dataField="createdAt" isKey={true} dataFormat={dateFormatter}>Date</TableHeaderColumn>
+              <TableHeaderColumn dataField="symbol">Symbol</TableHeaderColumn>
+              <TableHeaderColumn dataField="price">Price</TableHeaderColumn>
+              <TableHeaderColumn dataField="delta" dataFormat={deltaFormatter}>Transaction</TableHeaderColumn>
+            </BootstrapTable>
           </div>
-      );
+        </div>
+        <div className='row'>
+          <button className='btn btn-danger' onClick={this.deleteHistory.bind(this)}>
+            <span className='glyphicon glyphicon-trash'>Delete data</span>
+          </button>
+        </div>
+      </div>
+    );
   }
 }
