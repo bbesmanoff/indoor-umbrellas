@@ -33,7 +33,7 @@ stocksEndpoint.post('/transactions', (req, res) => {
 });
 
 stocksEndpoint.delete('/transactions', (req, res) => {
-  db.StockLedger.delete({where: {user_id: req.user.id}})
+  db.StockLedger.destroy(getFilterFor(req.user.id))
     .then(() => res.sendStatus(200));
 });
 

@@ -33,6 +33,19 @@ export default class StockHistory extends Component {
     stockRequest.send();
   }
 
+  deleteHistory() {
+    const request = new XMLHttpRequest();
+    request.open('DELETE', '/api/stocks/transactions');
+
+    request.onload = () => {
+      if (request.status === 200) {
+        this.setState({...this.state, stockHistoryItems: []});
+      }
+    };
+
+    request.send();
+  }
+
   render() {
       function dateFormatter(cell, row){
         var formattedDate = new Date(cell).toLocaleString();
@@ -58,7 +71,9 @@ export default class StockHistory extends Component {
           </div>
         </div>
         <div className='row'>
-          <button className='btn btn-danger'><span class='glyphicon glyphicon-trash'>Delete data</span></button>
+          <button className='btn btn-danger' onClick={this.deleteHistory.bind(this)}>
+            <span className='glyphicon glyphicon-trash'>Delete data</span>
+          </button>
         </div>
       </div>
     );
