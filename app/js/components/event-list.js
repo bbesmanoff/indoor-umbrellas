@@ -37,7 +37,7 @@ export default class EventList extends Component {
 
   render() {
     if (this.state.events.length === 0) {
-      return <span>{`No Events for ${Date.parse(this.props.date).toLocaleDateString()}`}</span>;
+      return <span>{`No Events for ${this.props.date.toLocaleDateString()}`}</span>;
     }
 
     var events = this.state.events.map((e) => {

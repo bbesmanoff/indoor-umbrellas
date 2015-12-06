@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render() {
     var today = new Date();
-    var tomorrow = (new Date()).setDate(today.getDate() + 1);
+    var tomorrow = new Date((new Date()).setDate(today.getDate() + 1));
 
     return (
       <div>
