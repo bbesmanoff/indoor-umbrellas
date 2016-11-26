@@ -7,6 +7,9 @@ import source from 'vinyl-source-stream';
 
 gulp.task('default', ['build', 'server', 'watch']);
 gulp.task('build', ['build:css', 'build:html', 'build:images', 'build:js']);
+gulp.task('testBuild', ['build:css', 'build:html', 'build:images', 'build:js'], function(){
+    process.exit(0);
+});
 
 gulp.task('build:css', () => {
    return gulp.src(['./app/**/*.css'])
